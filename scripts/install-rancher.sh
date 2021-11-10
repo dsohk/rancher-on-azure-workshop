@@ -63,6 +63,7 @@ done
 
 # Install Rancher with helm chart
 echo "Install Rancher ${RANCHER_VERSION} ..."
+sudo zypper install -y jq
 RANCHER_IP=`curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance/network?api-version=2017-08-01" | jq -r '.interface[0].ipv4.ipAddress[].publicIpAddress'`
 RANCHER_FQDN=rancher.$RANCHER_IP.sslip.io
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable

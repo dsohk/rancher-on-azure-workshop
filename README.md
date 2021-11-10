@@ -64,25 +64,25 @@ TODO: Insert an architectural diagram here.
 
 11:00 – 11:15 BREAK
 
- 
 
-11:15 – 12:15 – Cloud Native Application Deployment
 
-- Deploying stateless Applications from the Catalog
-- Enable cloud-native storage (longhorn) on the Kubernetes cluster.
-- Deploying stateful Applications from the Catalog
+11:15 – 12:15 – Securing and Managing Kubernetes Clusters
+
+- Perform non-disruptive upgrade of Kubernetes clusters.
+- Securing Kubernetes clusters.
+- Monitoring Kubernetes clusters.
 
 
 
 12:15 – 12:30 BREAK
 
- 
 
-12:30 – 13:15 – Securing and Managing Kubernetes Clusters
 
-- Securing Kubernetes clusters.
-- Monitoring Kubernetes clusters.
-- Perform non-disruptive upgrade of Kubernetes clusters.
+12:30 – 13:15 – Cloud Native Application Deployment
+
+- Deploying stateless Applications from the Catalog
+- Enable cloud-native storage (longhorn) on the Kubernetes cluster.
+- Deploying stateful Applications from the Catalog
 
 
 
