@@ -33,7 +33,9 @@ TODO: Describe a scenario here.
 
 ## Solution architecture
 
-TODO: Insert an architectural diagram here.
+This is what we are going to build in this workshop. We will create a resource group to contain the resources to be deployed in this workshop. Then, we will deploy Rancher Server as a VM within this resource group. We will then configure the Rancher Server to automate the provisioning of Kubernetes (based on RKE2) into the same resource group but different subnets. We will then explore some management and application deployment features in Rancher. 
+
+![suse-rancher-architecture](./docs/images/suse-rancher-architecture.png)
 
 
 

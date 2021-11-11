@@ -30,7 +30,7 @@ sudo systemctl enable rke2-server.service
 sudo systemctl start rke2-server.service
 
 mkdir -p $HOME/.kube
-ln -s /etc/rancher/rke2/rke2.yaml $HOME/.kube/config
+cp /etc/rancher/rke2/rke2.yaml $HOME/.kube/config
 export KUBECONFIG=$HOME/.kube/config
 
 # Wait until the RKE2 is ready
