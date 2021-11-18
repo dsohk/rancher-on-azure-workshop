@@ -6,7 +6,9 @@ At this point, we are going to setup an instance of SUSE Rancher Server on Azure
 
 ## Task 1: Create a Linux Instance on Azure
 
-In this task, we will create a linux instance on Azure to run SUSE Rancher.
+In this task, let's create a linux instance on Azure to run SUSE Rancher.
+
+
 
 ### Create Resource Group and a virtual network
 
@@ -75,7 +77,7 @@ az vm open-port --port 443 --resource-group rancher --name rancher
 
 ### Connect to virtual machine
 
-SSH to your VM as usual. Replace the IP address in the example with the public IP address of your VM as noted in the previous output. Alternatively, use the script below to obtain the VM IP address and ssh into it.
+SSH to your VM as usual. Use the public IP address of your VM as noted in the previous output in your ssh command. Alternatively, use the script below to obtain the VM IP address and ssh into it.
 
 ```bash
 export RANCHER_IP=$(az vm show -d -g Rancher -n rancher --query publicIps -o tsv)
@@ -160,7 +162,7 @@ You can then land on the **Home** page of Rancher Server.
 
 ### Next steps
 
-In this exercise, you deployed Rancher Server instance. In the next exercise, you will configure Rancher Server to create a few VMs on Azure and automate provisioning of a Kubernetes cluster on these VMs.
+In this exercise, you deployed Rancher Server instance. In the next exercise, you will configure Rancher Server to create a few VMs on Azure and automate provisioning of a Kubernetes cluster, which integrates with Azure Load Balancer, on these VMs.
 
 
 
