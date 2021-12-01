@@ -18,6 +18,10 @@ First, create a resource group nearest to where you are.
 az group create --name Rancher --location southeastasia
 ```
 
+Sample Azure Portal Image
+
+![exercise1-task1-1-create-resource-group-Rancher](images/exercise1-task1-1-create-resource-group-Rancher.png)
+
 Let's create a default virtual network named **mylab-vnet** with the a subnet to host Rancher VM instance in this workshop.
 
 ```bash
