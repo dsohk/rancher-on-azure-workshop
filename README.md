@@ -1,5 +1,5 @@
 # Kubernetes Management with SUSE Rancher on Microsoft Azure
-test
+
 
 
 ## Abstract and learning objectives
