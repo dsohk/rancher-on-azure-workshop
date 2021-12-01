@@ -166,7 +166,7 @@ In this exercise, you deployed Rancher Server instance. In the next exercise, yo
 
 
 
-
+Now, you can move ahead to the [second execrise] (./02-Provision-Kubernetes)
 
 
 
