@@ -190,7 +190,8 @@ To open up the firewall rules for public access to the application via node port
 ```bash
 az network nsg rule create -g lab --nsg-name worker \
  -n RKE2NodePorts --priority 1100 \
- --destination-port-ranges 30000 32769 --access Allow \
+ --destination-port-ranges '30000-32769' \
+ --access Allow \
  --protocol Tcp \
  --description "Allow from any IP address ranges on 30000 and 32769."
 ```
