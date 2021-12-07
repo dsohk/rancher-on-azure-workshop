@@ -4,18 +4,46 @@ Duration: 30 minutes
 
 At this point, we are going to setup an instance of SUSE Rancher Server on Azure.
 
+
+
+# Express Way for Task 1 & 2
+
+**TIPS**: If you want to finish this task automatically, we have prepared a script for you. To do this, please follow the steps below.
+
+1. Open Azure Cloud Shell
+2. In the Cloud Shell bash terminal, run the following command.
+
+```bash
+git clone https://github.com/dsohk/rancher-on-azure-workshop/
+cd rancher-on-azure-workshop/scripts
+```
+
+3. Run the command to start the lab, which will automatically run all the tasks in this exercise and setup the Rancher Server instance for you. This step will take about 10-15 mins to finish.
+
+```bash
+./startlab.sh
+```
+
+Once done, you can proceed to Task 3.
+
+
+
+# Regular Way for Task 1 & 2
+
+
+
 ## Task 1: Create a Linux Instance on Azure
 
 In this task, let's create a linux instance on Azure to run SUSE Rancher.
 
-
+**NOTE**: Please open **Azure Cloud Shell** to operate this exercise.
 
 ### Create Resource Group and a virtual network
 
 First, create a resource group nearest to where you are.
 
 ```bash
-az group create --name Rancher --location southeastasia
+az group create --name lab --location southeastasia
 ```
 
 Sample Azure Portal Image
@@ -25,8 +53,8 @@ Sample Azure Portal Image
 Let's create a default virtual network named **mylab-vnet** with the a subnet to host Rancher VM instance in this workshop.
 
 ```bash
-az network vnet create --resource-group Rancher \
-  --name mylab-vnet --address-prefix 10.0.0.0/16 \
+az network vnet create --resource-group lab \
+  --name lab-vnet --address-prefix 10.0.0.0/16 \
   --subnet-name rancher-subnet --subnet-prefix 10.0.0.0/24
 ```
 
@@ -37,14 +65,14 @@ az network vnet create --resource-group Rancher \
 Create an OpenSUSE Leap 15.3 Linux virtual machine instance attached to the rancher-subnet network. We will deploy Rancher Server on this VM.
 
 ```bash
-az vm create --resource-group Rancher \
+az vm create --resource-group lab \
   --name rancher \
   --admin-username suse \
   --image SUSE:opensuse-leap-15-3:gen1:2021.10.12 \
   --size Standard_B4ms \
   --generate-ssh-keys \
   --public-ip-sku Basic \
-  --vnet-name mylab-vnet \
+  --vnet-name lab-vnet \
   --subnet rancher-subnet \
   --os-disk-size-gb 50 \
   --verbose 
@@ -74,7 +102,7 @@ Command ran in 92.491 seconds (init: 0.115, invoke: 92.376)
 By default, only SSH connections are opened when you create a Linux VM in Azure.  Let's configure this VM to open TCP port 443 (https protocol) for use with Rancher Server instance:
 
 ```bash
-az vm open-port --port 443 --resource-group rancher --name rancher
+az vm open-port --port 443 --resource-group lab --name rancher
 ```
 
 
@@ -149,6 +177,10 @@ Your Rancher Server URL: https://rancher.52.187.36.166.sslip.io
 Bootstrap Password: xk5rxg9grjrf9522752t4rqd84b46krhg86mwgvtvbzsdw49bjlzmb
 ---------------------------------------------------------
 ```
+
+
+
+## Task 3 - Login to Rancher Server
 
 Open a browser and navigate to the Rancher Server URL. Type **thisisunsafe** at the page where there's invalid SSL warning to continue. You will be leading to a first-time setup page of Rancher like below. Enter your bootstrap password to continue.
 

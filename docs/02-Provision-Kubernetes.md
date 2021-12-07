@@ -62,27 +62,27 @@ Fill in the form with details below.
      - Machine Count: **1**
      - Roles: **etcd, Control Plane**
      - Location: **SouthEastAsia**
-     - Resource Group: **Rancher**
+     - Resource Group: **lab**
      - Availability Set: **master**
      - Image: **SUSE:opensuse-leap-15-3:gen1:2021.10.12**
      - VM Size: **Standard_A4_v2**
      - (Show Advanced)
        - Subnet: **master**
        - Subnet Prefix: **10.0.1.0/24**
-       - Virtual Network: **mylab-vnet**
+       - Virtual Network: **lab-vnet**
        - Network Security Group: **master**
    - Pool Name: **worker**
      - Machine Count: **1**
      - Roles: **Worker**
      - Location: **SouthEastAsia**
-     - Resource Group: **Rancher**
+     - Resource Group: **lab**
      - Availability Set: **worker**
      - Image: **SUSE:opensuse-leap-15-3:gen1:2021.10.12**
      - VM Size: **Standard_A4_v2**
      - (Show Advanced)
        - Subnet: **worker**
        - Subnet Prefix: **10.0.2.0/24**
-       - Virtual Network: **mylab-vnet**
+       - Virtual Network: **lab-vnet**
        - Network Security Group: **worker**
 - Scroll down to the **Cluster Configuration** section, under the  **Basics** section, choose **Cloud Provider** as **Azure**. In the given **Cloud Provider Config** field, please paste the configuration from the command line. For details of this configuration, please refer to the [Azure Cloud Provider](https://kubernetes-sigs.github.io/cloud-provider-azure/install/configs/) documentation site.
 
@@ -104,15 +104,15 @@ Fill in the form with details below.
        "aadClientId": "my-client-id",
        "aadClientSecret": "my-secret",
        "subscriptionId": "my-subscription-id",
-       "resourceGroup": "Rancher",
+       "resourceGroup": "lab",
        "location": "southeastasia",
        "subnetName": "worker",
        "securityGroupName": "worker",
-       "securityGroupResourceGroup": "Rancher",
+       "securityGroupResourceGroup": "lab",
        "vnetName": "mylab-vnet",
-       "vnetResourceGroup": "Rancher",
+       "vnetResourceGroup": "lab",
        "primaryAvailabilitySetName": "worker",
-       "routeTableResourceGroup": "Rancher",
+       "routeTableResourceGroup": "lab",
        "cloudProviderBackOff": false,
        "useManagedIdentityExtension": false,
        "useInstanceMetadata": true,
@@ -188,11 +188,11 @@ In this lab, we are going to expose all applications as high port in worker node
 To open up the firewall rules for public access to the application via node port, please run the following command in the Azure Cloud Shell.
 
 ```bash
-az network nsg rule create -g Rancher --nsg-name worker \
+az network nsg rule create -g lab --nsg-name worker \
  -n RKE2NodePorts --priority 100 \
  --destination-port-ranges 30000 32769 --access Allow \
  --protocol Tcp \
- --description “Allow from any IP address ranges on 30000 and 32769.”
+ --description "Allow from any IP address ranges on 30000 and 32769."
 ```
 
 

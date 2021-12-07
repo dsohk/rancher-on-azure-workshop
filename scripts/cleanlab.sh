@@ -1,5 +1,5 @@
 #! /bin/bash -ex
 
-az group delete --name Rancher
+az group delete --name lab
 
 

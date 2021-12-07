@@ -1,6 +1,6 @@
 #! /bin/bash -ex
 
-export AZURE_RES_GP=Rancher
+export AZURE_RES_GP=lab
 export AZURE_LOCATION=southeastasia
 export AZURE_VNET=10.0.0.0
 
