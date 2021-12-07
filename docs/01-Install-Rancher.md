@@ -8,7 +8,7 @@ At this point, we are going to setup an instance of SUSE Rancher Server on Azure
 
 # Express Way for Task 1 & 2
 
-**TIPS**: If you want to finish this task automatically, we have prepared a script for you. To do this, please follow the steps below.
+**TIPS**: If you want to setup the Rancher Server on Azure automatically (task 1 and 2), we have prepared a script for you. To do this, please follow the steps below.
 
 1. Open Azure Cloud Shell
 2. In the Cloud Shell bash terminal, run the following command.
@@ -18,7 +18,7 @@ git clone https://github.com/dsohk/rancher-on-azure-workshop/
 cd rancher-on-azure-workshop/scripts
 ```
 
-3. Run the command to start the lab, which will automatically run all the tasks in this exercise and setup the Rancher Server instance for you. This step will take about 10-15 mins to finish.
+3. Run the command to create a resource group on Azure, deploy a VM within this group and install Rancher Server on this VM. This step will take about 10-15 mins to finish.
 
 ```bash
 ./startlab.sh
@@ -29,6 +29,8 @@ Once done, you can proceed to Task 3.
 
 
 # Regular Way for Task 1 & 2
+
+**TIPS**: If you want to understand better the steps required to setup Rancher Server on Azure Instance, please follow the steps outlined in this section as follows.
 
 
 
