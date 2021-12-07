@@ -89,6 +89,14 @@ Fill in the form with details below.
 ![rancher-create-cluster-cloud-config](./images/rancher-create-cluster-cloud-config.png)
 
 
+
+* **NOTE** Please use the template below for your own cloud config file. You MUST replace the following fields with your own credentials instructed in the lab, before you copy and paste this cloud config json file into the Cloud Provider config input field on Rancher web form.
+  * tenantId
+  * aadClientId
+  * aadClientSecret
+  * subscriptionId
+
+
    ```
    {
        "cloud": "AzurePublicCloud",
@@ -173,51 +181,21 @@ Let's add a new worker node on RKE2. In the machine list of the RKE2 cluster det
 
 
 
-## (Skip) Task 5: Expose NGINX Ingress Controller on RKE2 to Azure Load Balancer
-
-By default the ingress controller deployed on RKE is exposed as internal service. Once the RKE2 is provisioned successfully with Azure Cloud Provider enabled. Let's reconfigure the ingress controller to expose its service via Azure Load Balancer.
-
-SSH into master node within SUSE Rancher. Place the following snippet to `/var/lib/rancher/rke2/server/manifests` folder in any of the RKE2 master nodes. This will reconfigure the nginx ingress controller to expose itself to LoadBalancer service.
-
-
-
-![rancher-rke2-master-node-config-ingress](./images/rancher-rke2-master-node-config-ingress.png)
-
-
-
-```
-sudo su 
-cd /var/lib/rancher/rke2/server/manifests
-```
-
-Save the following content into a file `rke2-ingress-nginx-config.yaml` under this folder. 
-
-```
-apiVersion: helm.cattle.io/v1
-kind: HelmChartConfig
-metadata:
-  name: rke2-ingress-nginx
-  namespace: kube-system
-spec:
-  valuesContent: |-
-    controller:
-      service:
-        enabled: true
-    defaultBackend:
-      enabled: true        
-```
-
-Once saved, the changes in reconfiguring rke2-ingress-nginx will get effective. As you can see in the Events log of **rke2** cluster in **Cluster Explorer**, **Azure Load Balancer** is now created to route external traffic into Nginx Ingress Controller.
-
-
-
 ### Next steps
 
-In this exercise, you deployed a Kubernetes cluster (RKE2) within SUSE Rancher. We also learned how to examine the logs of the cluster nodes. In the next section, we are going to deploy application onto the RKE2 cluster.
+In this exercise, you deployed a Kubernetes cluster (RKE2) within SUSE Rancher. We also learned how to examine the logs of the cluster nodes. In the next section, we are going to deploy applications onto the RKE2 cluster.
 
 
 
 Now, you can move ahead to the [third exercise](./03-DeployApps-on-RKE.md) of the lab.
+
+
+
+
+
+
+
+
 
 
 

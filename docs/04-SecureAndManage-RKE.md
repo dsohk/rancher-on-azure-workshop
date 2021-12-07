@@ -58,20 +58,29 @@ Once Rancher Monitoring has been deployed, we can view the various components an
 
 ## Task 3: Enable CIS Benchmark Scanning
 
-In this task, we are going to scan the Kubernetes cluster to ensure its configured securely. 
+In this task, we are going to scan the Kubernetes cluster to ensure its configured securely before running production workload on it.
 
 1. From the bottom of the left menu pane, click **Cluster Tools**.
 2. Locate **CIS Benchmark** and click **Install**
 3. In Step 1, choose **System** as **Install into Project** option and click **Next** to continue.
 4. Leave the setting as default in Step 2 and click **Install** to continue. It may take a few minutes to complete the installation.
 5. Once installation is completed, **CIS Benchmark** menu will appear in the left menu pane. Expand it and click **Scan**.
-6. 
+6. Click Create button on the right to create a new CIS Benchmark scanning job. 
+
+![rancher-rke2-cis-scan-create](./images/rancher-rke2-cis-scan-create.png)
+
+7. Leave the form as is to immediately run the scan once and click Create button to submit the job.
+8. It takes a few minutes to complete the first scan. Once completed, you should be able to check the scan report which includes the remedial steps you need to take to harden the cluster.
+
+![rancher-rke2-cis-scan-result](./images/rancher-rke2-cis-scan-result.png)
 
 
 
 ### Next steps
 
-In this exercise, you deployed Rancher Server instance.
+That's the end of the workshop. Hope you enjoy it and do let us know what you think to make this better. If you are interested to explore further how SUSE Rancher can help your organization to transform your business digitally, please reach out to us.
+
+
 
 
 
