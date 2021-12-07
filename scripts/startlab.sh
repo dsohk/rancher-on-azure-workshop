@@ -1,12 +1,16 @@
 #! /bin/bash -ex
 
-az group create --name Rancher --location southeastasia
+export AZURE_RES_GP=Rancher
+export AZURE_LOCATION=southeastasia
+export AZURE_VNET=10.0.0.0
 
-az network vnet create --resource-group Rancher \
-  --name mylab-vnet --address-prefix 10.0.0.0/16 \
-  --subnet-name rancher-subnet --subnet-prefix 10.0.0.0/24
+az group create --name $AZURE_RES_GP --location $AZURE_LOCATION
 
-az vm create --resource-group Rancher \
+az network vnet create --resource-group $AZURE_RES_GP \
+  --name mylab-vnet --address-prefix $AZURE_VNET/16 \
+  --subnet-name rancher-subnet --subnet-prefix $AZURE_VNET/24
+
+az vm create --resource-group $AZURE_RES_GP \
   --name rancher \
   --admin-username suse \
   --image SUSE:opensuse-leap-15-3:gen1:2021.10.12 \
@@ -19,9 +23,9 @@ az vm create --resource-group Rancher \
   --verbose 
 
 
-az vm open-port --port 443 --resource-group rancher --name rancher
+az vm open-port --port 443 --resource-group $AZURE_RES_GP --name rancher
 
-export RANCHER_IP=$(az vm show -d -g Rancher -n rancher --query publicIps -o tsv)
+export RANCHER_IP=$(az vm show -d -g $AZURE_RES_GP -n rancher --query publicIps -o tsv)
 
 
 ssh -o StrictHostKeyChecking=no suse@$RANCHER_IP 'sudo zypper install -y git jq'

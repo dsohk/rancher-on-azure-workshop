@@ -68,11 +68,11 @@ This is what we are going to build in this workshop. We will create a resource g
 
 
 
-11:15 – 12:15 – Securing and Managing Kubernetes Clusters
+11:15 – 12:15 – Cloud Native Application Deployment
 
-- Perform non-disruptive upgrade of Kubernetes clusters.
-- Securing Kubernetes clusters.
-- Monitoring Kubernetes clusters.
+- Add Storage Class for Persistent Storage
+- Deploy Intel-Optimized Tensorflow and Jupyter Notebook
+- Deploy stateful Wordpress Applications from the Rancher Marketplace
 
 
 
@@ -80,13 +80,13 @@ This is what we are going to build in this workshop. We will create a resource g
 
 
 
-12:30 – 13:15 – Cloud Native Application Deployment
+12:30 – 13:15 – Securing and Managing Kubernetes Clusters
 
-- Deploying stateless Applications from the Catalog
-- Enable cloud-native storage (longhorn) on the Kubernetes cluster.
-- Deploying stateful Applications from the Catalog
+- Monitoring Kubernetes clusters
 
+- Securing Kubernetes clusters
 
+  
 
 13:15 - 13:30 - Q&A
 

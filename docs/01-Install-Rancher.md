@@ -137,7 +137,7 @@ cd rancher-on-azure-workshop/scripts
 
 This script will
 * Install Kubernetes tools (kubectl and helm),
-* Deploy Rancher Install on RKE2 cluster.
+* Deploy Rancher Install on a local RKE2 cluster.
 
 In about 5-10 minutes, your Rancher Server should be ready. If you see the example output shown below, this means you have successfully deployed Rancher Server on the virtual machine. Note down the Rancher URL and initial bootstrap password.
 
@@ -170,7 +170,9 @@ In this exercise, you deployed Rancher Server instance. In the next exercise, yo
 
 
 
-Now, you can move ahead to the [second execrise] (./02-Provision-Kubernetes)
+Now, you can move ahead to the [second exercise](./02-Provision-Kubernetes.md) of the lab.
+
+
 
 
 
