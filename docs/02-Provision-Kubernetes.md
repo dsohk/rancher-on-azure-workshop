@@ -181,6 +181,22 @@ Let's add a new worker node on RKE2. In the machine list of the RKE2 cluster det
 
 
 
+## Task 5: Open Firewall Rules for NodePort access to Worker Nodes
+
+In this lab, we are going to expose all applications as high port in worker nodes for public access. This requires open up firewall rules for these. For the sake of convenience, we expose a wide range of ports used by Kubernetes NodePort service to the public in this lab. We suggest you open only the ports you need or use ingress controller/load balancer to expose your applications to the internet in production use. 
+
+To open up the firewall rules for public access to the application via node port, please run the following command in the Azure Cloud Shell.
+
+```bash
+az network nsg rule create -g Rancher --nsg-name worker \
+ -n RKE2NodePorts --priority 100 \
+ --destination-port-ranges 30000 32769 --access Allow \
+ --protocol Tcp \
+ --description “Allow from any IP address ranges on 30000 and 32769.”
+```
+
+
+
 ### Next steps
 
 In this exercise, you deployed a Kubernetes cluster (RKE2) within SUSE Rancher. We also learned how to examine the logs of the cluster nodes. In the next section, we are going to deploy applications onto the RKE2 cluster.
