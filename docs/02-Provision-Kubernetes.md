@@ -32,7 +32,7 @@ Let's configure Rancher and provision a Kubernetes cluster (RKE2) of 2 VMs (one 
 
 
 
-4. At this point, we need to configure Rancher to be able to automate provisioning on Azure with a proper cloud credential. Fill in the form with your own credential.
+4. At this point, we need to configure Rancher to be able to automate provisioning on Azure with a proper cloud credential. Fill in the form with your own credential, which can be found in the **Environment Details** > **Service Principal Details** tab in your lab instruction section.
    - Subscription ID: (See lab manual instruction)
    - Client ID: (See lab manual instruction)
    - Client Secret: (See lab manual instruction)
@@ -189,7 +189,7 @@ To open up the firewall rules for public access to the application via node port
 
 ```bash
 az network nsg rule create -g lab --nsg-name worker \
- -n RKE2NodePorts --priority 100 \
+ -n RKE2NodePorts --priority 1100 \
  --destination-port-ranges 30000 32769 --access Allow \
  --protocol Tcp \
  --description "Allow from any IP address ranges on 30000 and 32769."
