@@ -7,7 +7,7 @@ export AZURE_VNET=10.0.0.0
 az group create --name $AZURE_RES_GP --location $AZURE_LOCATION
 
 az network vnet create --resource-group $AZURE_RES_GP \
-  --name mylab-vnet --address-prefix $AZURE_VNET/16 \
+  --name lab-vnet --address-prefix $AZURE_VNET/16 \
   --subnet-name rancher-subnet --subnet-prefix $AZURE_VNET/24
 
 az vm create --resource-group $AZURE_RES_GP \
@@ -17,7 +17,7 @@ az vm create --resource-group $AZURE_RES_GP \
   --size Standard_B4ms \
   --generate-ssh-keys \
   --public-ip-sku Basic \
-  --vnet-name mylab-vnet \
+  --vnet-name lab-vnet \
   --subnet rancher-subnet \
   --os-disk-size-gb 50 \
   --verbose 
