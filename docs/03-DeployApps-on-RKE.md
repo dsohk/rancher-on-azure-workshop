@@ -76,9 +76,15 @@ The deployment is a factory for pods, so you'll notice a lot of similairities wi
 
 ![rancher-rke2-pod-intel-tensorflow-jupyter](./images/rancher-rke2-pod-intel-tensorflow-jupyter.png)
 
-5. In the left menu under **Service Discovery** > **Services**, you will find a new Node Port Service which exposes the Intel-Optimized tensorflow with jupyter application publicly on a high port on a node. You can click on the linked Port to directly access it.
+5. Click on **View Logs** of the intel pod. You should notice the token shown in the log entry. Copy this token and you need it when you first time open the jupyter notebook to setup your own password.
+
+![rancher-rke2-deploy-inte-tensorflow-jupyter-log](./images/rancher-rke2-deploy-inte-tensorflow-jupyter-log.png)
+
+6. In the left menu under **Service Discovery** > **Services**, you will find a new Node Port Service which exposes the Intel-Optimized tensorflow with jupyter application publicly on a high port on a node. You can click on the linked Port to directly access it.
 
 ![rancher-rke2-service-intel-tensorflow-jupyter](./images/rancher-rke2-service-intel-tensorflow-jupyter.png)
+
+
 
 
 
@@ -88,8 +94,9 @@ Now, let's try to run some sample tensorflow code.
 
 1. Click on the linked port to open the jupyter book in your browser. 
 
-2. Upload a jupyter python book sample which can be downloaded from here.
-3. Click Run button to execute the sample tensorflow code.
+2. Upload a jupyter python book sample which can be downloaded from this sample notebook: https://raw.githubusercontent.com/aymericdamien/TensorFlow-Examples/master/tensorflow_v2/notebooks/3_NeuralNetworks/neural_network.ipynb. Save the content as `.ipynb` extension in your laptop computer.
+3. Upload the above saved file into jupyter notebook.
+4. Click Run button to execute the sample tensorflow code.
 
 ![jupyter-notebook-on-rancher-rke2](./images/jupyter-notebook-on-rancher-rke2.png)
 
