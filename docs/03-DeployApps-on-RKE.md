@@ -39,15 +39,59 @@ In a Kubernetes Cluster, it can be desirable to have persistent storage availabl
 2. In the storage class form, please fill in the followings:
    1. Name: **azure-disk**
    2. Provisioner: **Azure Disk**
-   3. Storage Account Type: **Standard_LRS** (Leave as default)
-   4. Kind: **Dedicated (Unmanaged)** 
+   3. Storage Account Type: **Standard_LRS**
+   4. Kind: **Managed** 
 3. Keep all the settings as default, scroll to the bottom and click **Install**.
 4. Once the new Storage Class is installed, go to **Storage** > **Storage Classes**
 5. Observe the **azure-disk** storage class and choose the three-dot "..." menu to indicate it is the **Default** storage class.
 
 
 
-## Task 3: Deploy Intel-Optimised Tensorflow with Jupyter Notebook
+## Task 3: Validate the Storage Class is Working
+
+1. Create a PersistentVolumeClaim
+
+   1. Navigate to **Storage** > **PersistentVolumeClaims** in the left menu.
+   2. Click **Create** button.
+   3. Fill in the Storage Class creation form
+      1. Name: **test**
+      2. storageclass: **azure-disk**
+   4. Click **Save** button to continue.
+
+2. Create a Pod that consumes the PVC to create a volume via storage class
+
+   1. Navigate to **Workload** > **Pods** in the left menu.
+   2. Click **Create from YAML** button
+   3. Copy and paste the YAML below and replace the input box in the Pod Create form. 
+
+   ```YAML
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: task-pv-pod
+   spec:
+     volumes:
+       - name: task-pv-storage
+         persistentVolumeClaim:
+           claimName: test
+     containers:
+       - name: task-pv-container
+         image: nginx
+         ports:
+           - containerPort: 80
+             name: "http-server"
+         volumeMounts:
+           - mountPath: "/usr/share/nginx/html"
+             name: task-pv-storage
+   ```
+
+   4. Click **Create** button to continue.
+
+3. At this point, you should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
+
+   
+
+## Task 4: Deploy Intel-Optimised Tensorflow with Jupyter Notebook
 
 In this task, we will be creating a Kubernetes Deployment and Kubernetes Service for an Intel-optimized tensorflow workload. For the purposes of this lab, we will be using the container image `intel/intel-optimized-tensorflow:2.6.0-jupyter` but you can use your own container image if you have one for testing.
 
@@ -88,7 +132,7 @@ The deployment is a factory for pods, so you'll notice a lot of similairities wi
 
 
 
-## Task 4: Run a sample tensorflow code with Jupyter Notebook
+## Task 5: Run a sample tensorflow code with Jupyter Notebook
 
 Now, let's try to run some sample tensorflow code.
 
@@ -104,7 +148,7 @@ Now, let's try to run some sample tensorflow code.
 
 
 
-## Task 5: Add a new chart repository
+## Task 6: Add a new chart repository
 
 Now, let's try the easiest way to install a complete Wordpress into our cluster, is through the built-in Apps Marketplace. In addition to the Rancher and partner provided apps that are already available. You can add any other Helm repository and allow the installation of the Helm charts in there through the Rancher UI.
 
@@ -128,7 +172,7 @@ Now, let's try the easiest way to install a complete Wordpress into our cluster,
 
 
 
-## Task 6: Creating Wordpress Project in your Kubernetes Cluster
+## Task 7: Creating Wordpress Project in your Kubernetes Cluster
 
 Let's deploy a Wordpress instance into the cluster that uses the Azure Disk storage provider. First create a new project for it:
 
@@ -146,7 +190,7 @@ Let's deploy a Wordpress instance into the cluster that uses the Azure Disk stor
 
 
 
-## Deploy Wordpress as a Stateful Application
+## Task 8: Deploy Wordpress as a Stateful Application
 
 In this step, we will be deploying Wordpress in the Kubernetes cluster. This wordpress deployment will utilize azure disk to store our mariadb data persistently.
 
