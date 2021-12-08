@@ -114,7 +114,7 @@ az vm open-port --port 443 --resource-group lab --name rancher
 SSH to your VM as usual. Use the public IP address of your VM as noted in the previous output in your ssh command. Alternatively, use the script below to obtain the VM IP address and ssh into it.
 
 ```bash
-export RANCHER_IP=$(az vm show -d -g Rancher -n rancher --query publicIps -o tsv)
+export RANCHER_IP=$(az vm show -d -g lab -n rancher --query publicIps -o tsv)
 ssh -o StrictHostKeyChecking=no suse@$RANCHER_IP
 ```
 
@@ -167,7 +167,8 @@ cd rancher-on-azure-workshop/scripts
 
 This script will
 * Install Kubernetes tools (kubectl and helm),
-* Deploy Rancher Install on a local RKE2 cluster.
+* Deploy RKE2 cluster
+* Deploy Rancher Server on the RKE2 cluster with helm chart
 
 In about 5-10 minutes, your Rancher Server should be ready. If you see the example output shown below, this means you have successfully deployed Rancher Server on the virtual machine. Note down the Rancher URL and initial bootstrap password.
 

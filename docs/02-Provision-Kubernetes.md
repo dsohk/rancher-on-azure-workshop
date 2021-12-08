@@ -67,10 +67,13 @@ Fill in the form with details below.
      - Image: **SUSE:opensuse-leap-15-3:gen1:2021.10.12**
      - VM Size: **Standard_A4_v2**
      - (Show Advanced)
+       - Fault Domain Count: **1**
+       - Update Domain Count: **1**
        - Subnet: **master**
        - Subnet Prefix: **10.0.1.0/24**
        - Virtual Network: **lab-vnet**
        - Network Security Group: **master**
+       - Use Managed Disks: **checked**
    - Pool Name: **worker**
      - Machine Count: **1**
      - Roles: **Worker**
@@ -80,10 +83,20 @@ Fill in the form with details below.
      - Image: **SUSE:opensuse-leap-15-3:gen1:2021.10.12**
      - VM Size: **Standard_A4_v2**
      - (Show Advanced)
+       - Fault Domain Count: **1**
+       - Update Domain Count: **1**
        - Subnet: **worker**
        - Subnet Prefix: **10.0.2.0/24**
        - Virtual Network: **lab-vnet**
        - Network Security Group: **worker**
+       - Use Managed Disks: **checked**
+       - Add Open Port
+         - **30000-32767/tcp**
+
+**NOTE:** In this lab, we are going to expose all applications as high port in worker nodes for public access. This requires open up firewall rules for these. For the sake of convenience, we expose a wide range of ports (30000-32767) used by Kubernetes NodePort service to the public in this lab. We suggest you open only the ports you need or use ingress controller/load balancer to expose your applications to the internet in production use. 
+
+
+
 - Scroll down to the **Cluster Configuration** section, under the  **Basics** section, choose **Cloud Provider** as **Azure**. In the given **Cloud Provider Config** field, please paste the configuration from the command line. For details of this configuration, please refer to the [Azure Cloud Provider](https://kubernetes-sigs.github.io/cloud-provider-azure/install/configs/) documentation site.
 
 ![rancher-create-cluster-cloud-config](./images/rancher-create-cluster-cloud-config.png)
@@ -178,23 +191,6 @@ Let's add a new worker node on RKE2. In the machine list of the RKE2 cluster det
 
 
 ![rancher-rke2-add-worker-node](./images/rancher-rke2-add-worker-node.png)
-
-
-
-## Task 5: Open Firewall Rules for NodePort access to Worker Nodes
-
-In this lab, we are going to expose all applications as high port in worker nodes for public access. This requires open up firewall rules for these. For the sake of convenience, we expose a wide range of ports used by Kubernetes NodePort service to the public in this lab. We suggest you open only the ports you need or use ingress controller/load balancer to expose your applications to the internet in production use. 
-
-To open up the firewall rules for public access to the application via node port, please run the following command in the Azure Cloud Shell.
-
-```bash
-az network nsg rule create -g lab --nsg-name worker \
- -n RKE2NodePorts --priority 1100 \
- --destination-port-ranges '30000-32769' \
- --access Allow \
- --protocol Tcp \
- --description "Allow from any IP address ranges on 30000 and 32769."
-```
 
 
 
