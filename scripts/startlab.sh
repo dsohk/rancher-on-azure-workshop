@@ -34,6 +34,8 @@ ssh -o StrictHostKeyChecking=no suse@$RANCHER_IP 'git clone https://github.com/d
 
 ssh -o StrictHostKeyChecking=no suse@$RANCHER_IP 'cd rancher-on-azure-workshop/scripts && ./install-rancher.sh'
 
+scp -o StrictHostKeyChecking=no suse@$RANCHER_IP:~/rancher-on-azure-workshop/scripts/rancher-url.txt .
+
 
 
 
