@@ -69,6 +69,7 @@ In a Kubernetes Cluster, it can be desirable to have persistent storage availabl
    kind: Pod
    metadata:
      name: task-pv-pod
+     namespace: default
    spec:
      volumes:
        - name: task-pv-storage
