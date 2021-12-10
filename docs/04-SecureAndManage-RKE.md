@@ -22,6 +22,14 @@ To deploy the *Rancher Monitoring* feature:
 
    ![rancher-rke2-cluster-tools](./images/rancher-rke2-cluster-tools.png)
 
+   ![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-pg1](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-pg1.png)
+
+   
+
+   
+
+   
+
    
 
 3. On the Monitoring App Detail page click the **Install** button in the top right
@@ -32,10 +40,21 @@ To deploy the *Rancher Monitoring* feature:
 
 ![rancher-rke2-deploy-prometheus-cpurequest](./images/rancher-rke2-deploy-prometheus-cpurequest.png)
 
+![Exercise4-Task1-Rancher-Monitoring-App-AlterManager-Value](images/Exercise4-Task1-Rancher-Monitoring-App-AlterManager-Value.png)
+
+
+
+![Exercise4-Task1-Rancher-Monitoring-App-Grafana-Value](images/Exercise4-Task1-Rancher-Monitoring-App-Grafana-Value.png)
+
 6. Click "**Install**" at the bottom of the page, and wait the helm install operation to complete. It may take a few minutes.
-7. Once Monitoring has been installed, you can click on that application under "Installed Apps" to view the various resources that were deployed.
 
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Deployment-Status](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Deployment-Status.png)
 
+6. Once Monitoring has been installed, you can click on that application under "Installed Apps" to view the various resources that were deployed.
+
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Deployment-Status-Contariner-Various-Stages](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Deployment-Status-Contariner-Various-Stages.png)
+
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Deployment-Success](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Deployment-Success.png)
 
 ## Task 2: Working with Rancher Monitoring
 
@@ -54,7 +73,25 @@ Once Rancher Monitoring has been deployed, we can view the various components an
 
 3. You will also see new Metrics and Alerts section on the Cluster page as well as on the individual workload pages.
 
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-Rancher-Node-Instances](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-Rancher-Node-Instances.png)
 
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-Rancher-Node1](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-Rancher-Node1.png)
+
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-Rancher-Node2](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-Rancher-Node2.png)
+
+![Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-API-Server](images/Exercise4-Task1-Deploy-Custer-Monitoring-Rancher-Monitoring-App-Grafana-Dashboard-API-Server.png)
+
+In addition, you can watch the metric details
+
+![Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Cluster-Metrics-Detail](images/Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Cluster-Metrics-Detail.png)
+
+![Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Cluster-Metrics-Summary](images/Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Cluster-Metrics-Summary.png)
+
+![Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-ETCD-Metrics-Summary](images/Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-ETCD-Metrics-Summary.png)
+
+
+
+![Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Kubernetes-Component-Metrics-Summary](images/Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Kubernetes-Component-Metrics-Summary.png)
 
 ## Task 3: Enable CIS Benchmark Scanning
 
@@ -66,15 +103,46 @@ In this task, we are going to scan the Kubernetes cluster to ensure its configur
 4. Leave the setting as default in Step 2 and click **Install** to continue. It may take a few minutes to complete the installation.
 5. Once installation is completed, **CIS Benchmark** menu will appear in the left menu pane. Expand it and click **Scan**.
 6. Click Create button on the right to create a new CIS Benchmark scanning job. 
-
-![rancher-rke2-cis-scan-create](./images/rancher-rke2-cis-scan-create.png)
-
 7. Leave the form as is to immediately run the scan once and click Create button to submit the job.
 8. It takes a few minutes to complete the first scan. Once completed, you should be able to check the scan report which includes the remedial steps you need to take to harden the cluster.
 
+![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-2.0.1](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-2.0.1.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-2.0.1-Values](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-2.0.1-Values.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-App-Progress](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-App-Progress.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-App-Success](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-App-Success.png)
+
+CIS Profiles
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Profiles-Available](images/Exercise4-Task1-Deploy-CusterTools-CIS-Profiles-Available.png)
+
+CIS Benchmark
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-Versions](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-Versions.png)
+
+Create a CIS Scan
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Create](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Create.png)
+
+![rancher-rke2-cis-scan-create](./images/rancher-rke2-cis-scan-create.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations-both-worker-nodes](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations-both-worker-nodes.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Running-Status](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Running-Status.png)
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Termination-Post-Run-Opearation](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Termination-Post-Run-Opearation.png)
+
+![Exercise4-Task1-Cluster-CIS-Scan-Download-Scan-Report](images/Exercise4-Task1-Cluster-CIS-Scan-Download-Scan-Report.png)
+
 ![rancher-rke2-cis-scan-result](./images/rancher-rke2-cis-scan-result.png)
 
-
+![Exercise4-Task1-Cluster-CIS-Scan-Remediation](images/Exercise4-Task1-Cluster-CIS-Scan-Remediation.png)
 
 ### Next steps
 
