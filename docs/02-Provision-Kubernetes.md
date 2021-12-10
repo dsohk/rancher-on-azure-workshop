@@ -1,3 +1,5 @@
+
+
 # Exercise 2: Provision Kubernetes on Microsoft Azure within SUSE Rancher
 
 Duration: 60 minutes
@@ -106,12 +108,17 @@ Under the  **Basics** section, choose **Cloud Provider** as **Azure**. In the gi
 ** NOTE** Please use the template below for your own cloud config file. You MUST replace the following fields with your own credentials instructed in the lab, before you copy and paste this cloud config json file into the Cloud Provider config input field on Rancher web form.
 
   * tenantId
-
   * aadClientId
-
   * aadClientSecret
-
   * subscriptionId
+  * 
+
+```
+cd rancher-on-azure-workshop/scripts
+./generate-cloud-provider-json.sh
+```
+
+You can now copy & paste the code ouput. 
 
 ```
 {
