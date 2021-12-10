@@ -18,7 +18,7 @@ git clone https://github.com/dsohk/rancher-on-azure-workshop/
 cd rancher-on-azure-workshop/scripts
 ```
 
-![Excercise1-task1-git-clone-azure-workshop](images/Excercise1-task1-git-clone-azure-workshop-16391268618331.png)
+![Excercise1-task1-git-clone-azure-workshop](images/Excercise1-task1-git-clone-azure-workshop-16391283982413.png)
 
 3. Run the command to create a resource group on Azure, deploy a VM within this group and install Rancher Server on this VM. This step will take about 10-15 mins to finish.
 
@@ -26,9 +26,11 @@ cd rancher-on-azure-workshop/scripts
 ./startlab.sh
 ```
 
-![Excercise1-task1-install-rancher-via-script](images/Excercise1-task1-install-rancher-via-script.png)
 
-![Excercise1-task1-install-rancher-success](images/Excercise1-task1-install-rancher-success.png)
+
+
+
+](images/Excercise1-task1-install-rancher-success.png)
 
 Once done, you can proceed to Task 3.
 
@@ -46,19 +48,12 @@ Once done, you can proceed to Task 3.
 
 ![Excercise1-task1-rancher-login-success-home-page](images/Excercise1-task1-rancher-login-success-home-page-16391272154692.png)
 
-### Next steps
 
-In this exercise, you deployed Rancher Server instance. In the next exercise, you will configure Rancher Server to create a few VMs on Azure and automate provisioning of a Kubernetes cluster, which integrates with Azure Load Balancer, on these VMs.
-
-Now, you can move ahead to the [second exercise](./02-Provision-Kubernetes.md) of the lab.
-
-----------------------------------------
+All above steps can be also performed in regular way. 
 
 # Regular Way for Task 1 & 2
 
 **TIPS**: If you want to understand better the steps required to setup Rancher Server on Azure Instance, please follow the steps outlined in this section as follows.
-
-
 
 ## Task 1: Create a Linux Instance on Azure
 
