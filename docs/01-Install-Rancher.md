@@ -26,11 +26,11 @@ cd rancher-on-azure-workshop/scripts
 ./startlab.sh
 ```
 
+![Excercise1-task1-install-rancher-install-script](images/Excercise1-task1-install-rancher-install-script.png)
 
+Need Rancher Success with Rancher URL
 
-
-
-](images/Excercise1-task1-install-rancher-success.png)
+![Rancher-Success-and-URL](images/Rancher-Success-and-URL.png)
 
 Once done, you can proceed to Task 3.
 
