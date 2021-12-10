@@ -183,43 +183,53 @@ Now, let's try to run some sample tensorflow code.
 
 Now, let's try the easiest way to install a complete Wordpress into our cluster, is through the built-in Apps Marketplace. In addition to the Rancher and partner provided apps that are already available. You can add any other Helm repository and allow the installation of the Helm charts in there through the Rancher UI.
 
-![rancher-rke2-marketplace-addrepo](./images/rancher-rke2-marketplace-addrepo.png)
+By Default two Repository are provided by SUSE Rancher
 
-1. In the left menu go to **Apps & Marketplace** > **Chart repositories**
+1) Rancher
+2) Partners
 
-2. Click on **Create** in the top right
+![Exercise3-task6-Default-Repository-provided-Rancher](images/Exercise3-task6-Default-Repository-provided-Rancher.png)
 
-3. Enter the following details:
+You can add you public/private repository as well. Let add a new repository.
 
-4. - **Name** - rodeo
+ In the left menu go to **Apps & Marketplace** > **Chart repositories**
+
+1. Click on **Create** in the top right
+
+2. Enter the following details:
+
+3. - **Name** - rodeo
    - **Target** - Should be http(s) URL
    - **Index URL** - https://rancher.github.io/rodeo
 
-5. Click on **Create**
+4. Click on **Create**
 
-6. Once the repository has been synchronized, go to **Apps & Marketplace** > **Charts**. There you will now see several new apps that you can install.
+5. Once the repository has been synchronized, go to **Apps & Marketplace** > **Charts**. There you will now see several new apps that you can install.
+
+![rancher-rke2-marketplace-addrepo](./images/rancher-rke2-marketplace-addrepo.png)
+
+We can check the newly created repository.
+
+![Exercise3-task6-Repository-Create-Success](images/Exercise3-task6-Repository-Create-Success.png)
 
 ![rancher-rke2-marketplace-rodeo-chart](./images/rancher-rke2-marketplace-rodeo-chart.png)
-
-
 
 ## Task 7: Creating Wordpress Project in your Kubernetes Cluster
 
 Let's deploy a Wordpress instance into the cluster that uses the Azure Disk storage provider. First create a new project for it:
 
 1. In the left menu go to **Cluster** > **Projects/Namespaces**
-
 2. Click **Create Project** in the top right
-
 3. Give your project a name, like wordpress
-
-4. - Note the ability to add members, set resource quotas and a pod security policy for this project.
-
+4. Note the ability to add members, set resource quotas and a pod security policy for this project.
 5. Next create a new namespace in the wordpress project. In the list of all **Projects/Namespaces**, scroll down to the wordpress project and click the **Create Namespace** button.
-
 6. Enter the **Name** wordpress and click **Create**.
 
+![Exercise3-task7-Create-New-Project-Wordpress](images/Exercise3-task7-Create-New-Project-Wordpress.png)
 
+![Exercise3-task7-Create-New-Project-Wordpress-Success](images/Exercise3-task7-Create-New-Project-Wordpress-Success.png)
+
+![Exercise3-task7-Create-New-Namespace-wordpress-pg2](images/Exercise3-task7-Create-New-Namespace-wordpress-pg2.png)
 
 ## Task 8: Deploy Wordpress as a Stateful Application
 
@@ -234,8 +244,14 @@ In this step, we will be deploying Wordpress in the Kubernetes cluster. This wor
 4. - **Wordpress settings** > **Wordpress password** - to a password of your choice
    - Enable **Wordpress setting** > **Wordpress Persistent Volume Enabled**
    
-   ![rancher-rke2-deploy-wordpress-wordpress-setting](./images/rancher-rke2-deploy-wordpress-wordpress-setting.png)
+   ![Exercise3-task8-Apps-MarketPlace-Repo-Wordpress-App](images/Exercise3-task8-Apps-MarketPlace-Repo-Wordpress-App.png)
 
+   ![Exercise3-task8-Deployment-Wordpress-Create](images/Exercise3-task8-Deployment-Wordpress-Create.png)
+   
+   
+   
+   ![rancher-rke2-deploy-wordpress-wordpress-setting](./images/rancher-rke2-deploy-wordpress-wordpress-setting.png)
+   
    
    
    - Enable **Database setting** > **MariaDB Persistent Volume Enabled**
@@ -248,15 +264,67 @@ In this step, we will be deploying Wordpress in the Kubernetes cluster. This wor
 
 ![rancher-rke2-deploy-wordpress-service-setting](./images/rancher-rke2-deploy-wordpress-service-setting.png)
 
-
-
 1. Scroll to the bottom and click **Install**.
-2. It may take a few minutes to deploy wordpress in this lab, once the installation is complete, navigate to **Service Discovery** > **Services**. There you will see a new high port next to Wordpress service. Click on the URL to access Wordpress.
-3. - *Note: You may receive* ***404\****,* ***502\****, or* ***503\*** *errors while the wordpress app is coming up. Simply refresh the page occasionally until Wordpress is available*
-4. Note that you now have two Persistent Volumes available under **Storage** > **Persistent Volumes**
-5. Log into Wordpress using your set admin credentials and create a new blog post. If you delete the **wordpress-mariadb** pod or click **Redeploy** now, your post will not be lost.
+
+![Exercise3-task8-Deployment-In-Progress](images/Exercise3-task8-Deployment-In-Progress.png)
+
+Note that you now have two Persistent Volumes available under **Storage** > **Persistent Volumes**
+
+![Exercise3-task8-Deployment-App-PVC-Claim](images/Exercise3-task8-Deployment-App-PVC-Claim.png)
+
+![Exercise3-task8-Deployment-App-Presisent-Volume](images/Exercise3-task8-Deployment-App-Presisent-Volume.png)
+
+![Exercise3-task8-Deployment-App-Wordpress-Pod-Container-Shell](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Container-Shell-16391497067927.png)
+
+![Exercise3-task8-Deployment-App-Wordpress-Pod-Logs](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Logs-16391497177318.png)
+
+MariaDB
+
+![Exercise3-task8-Deployment-App-MariaDB-Container-Shell](images/Exercise3-task8-Deployment-App-MariaDB-Container-Shell-16391498455639.png)
+
+![Exercise3-task8-Deployment-App-MariaDB-Pod-Logs](images/Exercise3-task8-Deployment-App-MariaDB-Pod-Logs-163914985245210.png)
+
+![Exercise3-task8-Deployment-App-MariaDB-Pod-Success](images/Exercise3-task8-Deployment-App-MariaDB-Pod-Success.png)
+
+![Exercise3-task8-Deployment-App-MariaDB-Pod-Logs](images/Exercise3-task8-Deployment-App-MariaDB-Pod-Logs.png)
+
+![Exercise3-task8-Deployment-App-MariaDB-Container-Shell](images/Exercise3-task8-Deployment-App-MariaDB-Container-Shell.png)
+
+1. It may take a few minutes to deploy wordpress in this lab, once the installation is complete, navigate to **Service Discovery** > **Services**. There you will see a new high port next to Wordpress service. Click on the URL to access Wordpress.
+
+1. - *Note: You may receive* ***404\****,* ***502\****, or* ***503\*** *errors while the wordpress app is coming up. Simply refresh the page occasionally until Wordpress is available*
+2. 
+3. 
+
+![Exercise3-task8-Deployment-Wordpress-Services](images/Exercise3-task8-Deployment-Wordpress-Services.png)
+
+Log into Wordpress using your set admin credentials and create a new blog post. If you delete the **wordpress-mariadb** pod or click **Redeploy** now, your post will not be lost.
+
+![Exercise3-task8-Deployment-Wordpress-Up-n-Working](images/Exercise3-task8-Deployment-Wordpress-Up-n-Working.png)
+
+![Exercise3-task8-Deployment-Wordpress-First_Blog1](images/Exercise3-task8-Deployment-Wordpress-First_Blog1.png)
 
 
+
+Deleting the Wordpress Pod.
+
+![Exercise3-task8-Deployment-App-Wordpress-Pod-Deletion](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Deletion.png)
+
+Deployment re-creating the Wordpress Pods as it's a Replica Set
+
+![Exercise3-task8-Deployment-App-Wordpress-Pod-Terminating](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Terminating.png)
+
+![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Creation-Stage](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Creation-Stage.png)
+
+![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost.png)
+
+
+
+![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Uptime-2-mins-only](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Uptime-2-mins-only.png)
+
+Sample Wordpress Deployment YAML File.
+
+![Exercise3-task8-Deployment-Wordpress-YAML-Definition](images/Exercise3-task8-Deployment-Wordpress-YAML-Definition.png)
 
 ### Next steps
 
