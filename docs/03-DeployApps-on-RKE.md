@@ -10,8 +10,6 @@ The first application we are going to deploy is jupyter book to help AI/ML train
 
 Then, we will deploy **Wordpress** on to the same RKE2 cluster, which stores its all data permanently on Azure Disk.
 
-
-
 ## Task 1: Interacting with the Kubernetes Cluster
 
 In this step, we will be showing basic interaction with our Kubernetes cluster.
@@ -24,16 +22,20 @@ In this step, we will be showing basic interaction with our Kubernetes cluster.
 
 1. **Note the diagrams dials, which illustrate cluster capacity, and the box that show you the recent events in your cluster.**
 2. Click the Kubectl Shell button (the button with the Prompt icon) in the top right corner of the Cluster Explorer, and enter kubectl get pods --all-namespaces and observe the fact that you can interact with your Kubernetes cluster using kubectl.
-3. Also take note of the Download Kubeconfig File button next to it which will generate a Kubeconfig file that can be used from your local desktop or within your deployment pipelines.
-4. In the left menu, you have access to all Kubernetes resources, the Rancher Application Marketplace and additional cluster tools.
 
+![Exercise3-task1-Exploring-cluster-Kubectl-shell](images/Exercise3-task1-Exploring-cluster-Kubectl-shell-16391374923465.png)
 
+1. Also take note of the Download Kubeconfig File button next to it which will generate a Kubeconfig file that can be used from your local desktop or within your deployment pipelines.
+
+![Exercise3-task1-Exploring-cluster-download-kubeconfig](images/Exercise3-task1-Exploring-cluster-download-kubeconfig.png)
+
+1. In the left menu, you have access to all Kubernetes resources, the Rancher Application Marketplace and additional cluster tools.
+
+![Exercise3-task1-Exploring-cluster-All-Cluster-Resources](images/Exercise3-task1-Exploring-cluster-All-Cluster-Resources.png)
 
 ## Task 2: Create a default Storage Class
 
 In a Kubernetes Cluster, it can be desirable to have persistent storage available for applications to use. As we have already enabled a Kubernetes Cloud Provider for Azure in this cluster, we will be deploying the **Azure Disk** as data volumes, provided by **[Azure Storage](https://docs.microsoft.com/en-us/azure/aks/concepts-storage)**, to be used by containerized application running in a pod. 
-
-![rancher-rke2-create-storageclass](./images/rancher-rke2-create-storageclass.png)
 
 1. In the left navigation menu, open **Storage**  >. **Storage Class** and then click **Create**
 2. In the storage class form, please fill in the followings:
@@ -41,11 +43,20 @@ In a Kubernetes Cluster, it can be desirable to have persistent storage availabl
    2. Provisioner: **Azure Disk**
    3. Storage Account Type: **Standard_LRS**
    4. Kind: **Managed** 
-3. Keep all the settings as default, scroll to the bottom and click **Install**.
-4. Once the new Storage Class is installed, go to **Storage** > **Storage Classes**
-5. Observe the **azure-disk** storage class and choose the three-dot "..." menu to indicate it is the **Default** storage class.
 
+![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create.png)
 
+Keep all the settings as default, scroll to the bottom and click **Install**.
+
+Once the new Storage Class is installed, go to **Storage** > **Storage Classes**
+
+![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create-Success](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create-Success.png)
+
+Observe the **azure-disk** storage class and choose the three-dot "..." menu to indicate it is the **Default** storage class.
+
+![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk.png)
+
+![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk-default-stroage-class](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk-default-stroage-class.png)
 
 ## Task 3: Validate the Storage Class is Working
 
@@ -58,7 +69,13 @@ In a Kubernetes Cluster, it can be desirable to have persistent storage availabl
       2. storageclass: **azure-disk**
    4. Click **Save** button to continue.
 
-2. Create a Pod that consumes the PVC to create a volume via storage class
+![Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk](images/Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk.png)
+
+
+
+![Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk-Success](images/Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk-Success.png)
+
+1. Create a Pod that consumes the PVC to create a volume via storage class
 
    1. Navigate to **Workload** > **Pods** in the left menu.
    2. Click **Create from YAML** button
@@ -88,9 +105,15 @@ In a Kubernetes Cluster, it can be desirable to have persistent storage availabl
 
    4. Click **Create** button to continue.
 
-3. At this point, you should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
+![Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage class-Azure-disk.png](images/Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage class-Azure-disk.png.png)
 
-   
+Pod Definition Template for reference.
+
+![Exercise3-task3-step2-Pod-definition-template-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-definition-template-Consuming-PVC-via-storage class-Azure-disk.png)
+
+At this point, you should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
+
+![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk.png)
 
 ## Task 4: Deploy Intel-Optimised Tensorflow with Jupyter Notebook
 
@@ -119,6 +142,16 @@ The deployment is a factory for pods, so you'll notice a lot of similairities wi
 
 4. From here you can click on a Pod, to have a look at the Pod's events. In the **three-dots** menu on a Pod, you can also access the logs of a Pod or start an interactive shell into the Pod.
 
+![Exercise3-task4-Deploy-Intel-App-Status-Updating](images/Exercise3-task4-Deploy-Intel-App-Status-Updating.png)
+
+![Exercise3-task4-Deploy-Intel-App-Status-Container-Creation](images/Exercise3-task4-Deploy-Intel-App-Status-Container-Creation.png)
+
+
+
+![Exercise3-task4-Deploy-Intel-App-Running-Success](images/Exercise3-task4-Deploy-Intel-App-Running-Success.png)
+
+![Exercise3-task4-Deploy-Intel-App-Running-WorkerNode](images/Exercise3-task4-Deploy-Intel-App-Running-WorkerNode.png)
+
 ![rancher-rke2-pod-intel-tensorflow-jupyter](./images/rancher-rke2-pod-intel-tensorflow-jupyter.png)
 
 5. Click on **View Logs** of the intel pod. You should notice the token shown in the log entry. Copy this token and you need it when you first time open the jupyter notebook to setup your own password.
@@ -129,25 +162,22 @@ The deployment is a factory for pods, so you'll notice a lot of similairities wi
 
 ![rancher-rke2-service-intel-tensorflow-jupyter](./images/rancher-rke2-service-intel-tensorflow-jupyter.png)
 
+![Exercise3-task4-App-Intel-Services-Type-Nodeport](images/Exercise3-task4-App-Intel-Services-Type-Nodeport.png)
 
-
-
+![Exercise3-task4-App-Intel-WebUI-Entering-Token-Acceessing-IntelApp](images/Exercise3-task4-App-Intel-WebUI-Entering-Token-Acceessing-IntelApp.png)
 
 ## Task 5: Run a sample tensorflow code with Jupyter Notebook
 
 Now, let's try to run some sample tensorflow code.
 
 1. Click on the linked port to open the jupyter book in your browser. 
-
 2. Upload a jupyter python book sample which can be downloaded from this sample notebook: https://raw.githubusercontent.com/aymericdamien/TensorFlow-Examples/master/tensorflow_v2/notebooks/3_NeuralNetworks/neural_network.ipynb. Save the content as `.ipynb` extension in your laptop computer.
 3. Upload the above saved file into jupyter notebook.
 4. Click Run button to execute the sample tensorflow code.
 
+![Exercise3-task5-App-Intel-Upload-Sample-Tensorflow-code-with-JupyterNotebook](images/Exercise3-task5-App-Intel-Upload-Sample-Tensorflow-code-with-JupyterNotebook.png)
+
 ![jupyter-notebook-on-rancher-rke2](./images/jupyter-notebook-on-rancher-rke2.png)
-
-
-
-
 
 ## Task 6: Add a new chart repository
 

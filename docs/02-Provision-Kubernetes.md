@@ -118,7 +118,7 @@ cd rancher-on-azure-workshop/scripts
 ./generate-cloud-provider-json.sh
 ```
 
-You can now copy & paste the code ouput. 
+You can now copy & paste the code output. 
 
 ```
 {
@@ -143,10 +143,6 @@ You can now copy & paste the code ouput.
     "loadBalancerSku": "basic"    
 }
 ```
-
-
-
-![Excercise2-Task1-RKE2Cluster-Creation-MachinePool-Master-Basic-Cloud-Provider-Config](images/Excercise2-Task1-RKE2Cluster-Creation-MachinePool-Master-Basic-Cloud-Provider-Config.png)
 
 ![rancher-create-cluster-cloud-config](./images/rancher-create-cluster-cloud-config.png)
 
