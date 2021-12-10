@@ -103,7 +103,7 @@ Scroll down to the **Cluster Configuration** section,
 
 Under the  **Basics** section, choose **Cloud Provider** as **Azure**. In the given **Cloud Provider Config** field, please paste the configuration from the command line. For details of this configuration, please refer to the [Azure Cloud Provider](https://kubernetes-sigs.github.io/cloud-provider-azure/install/configs/) documentation site.
 
-* NOTE** Please use the template below for your own cloud config file. You MUST replace the following fields with your own credentials instructed in the lab, before you copy and paste this cloud config json file into the Cloud Provider config input field on Rancher web form.
+** NOTE** Please use the template below for your own cloud config file. You MUST replace the following fields with your own credentials instructed in the lab, before you copy and paste this cloud config json file into the Cloud Provider config input field on Rancher web form.
 
   * tenantId
 
@@ -113,10 +113,7 @@ Under the  **Basics** section, choose **Cloud Provider** as **Azure**. In the gi
 
   * subscriptionId
 
-    
-
-
-   ```
+```
 {
     "cloud": "AzurePublicCloud",
     "tenantId": "my-tenant-id",
@@ -138,7 +135,7 @@ Under the  **Basics** section, choose **Cloud Provider** as **Azure**. In the gi
     "loadBalancerName": "rke2-lb",
     "loadBalancerSku": "basic"    
 }
-   ```
+```
 
 
 
