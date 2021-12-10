@@ -28,8 +28,6 @@ cd rancher-on-azure-workshop/scripts
 
 ![Excercise1-task1-install-rancher-install-script](images/Excercise1-task1-install-rancher-install-script.png)
 
-Need Rancher Success with Rancher URL
-
 ![Rancher-Success-and-URL](images/Rancher-Success-and-URL.png)
 
 Once done, you can proceed to Task 3.
