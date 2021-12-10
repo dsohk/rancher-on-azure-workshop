@@ -38,3 +38,5 @@ cat > cloud-config.json << EOF
     "loadBalancerSku": "Basic"
 }
 EOF
+
+cat cloud-config.json
