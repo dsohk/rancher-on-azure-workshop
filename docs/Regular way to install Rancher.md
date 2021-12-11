@@ -1,52 +1,3 @@
-# Exercise 1: Install SUSE Rancher on Microsoft Azure Instance
-
-Duration: 30 minutes
-
-At this point, we are going to setup an instance of SUSE Rancher Server on Azure.
-
-# Express Way for Task 1 & 2
-
-**TIPS**: If you want to setup the Rancher Server on Azure automatically (task 1 and 2), we have prepared a script for you. To do this, please follow the steps below.
-
-1. Open Azure Cloud Shell
-2. In the Cloud Shell bash terminal, run the following command.
-
-```bash
-git clone https://github.com/dsohk/rancher-on-azure-workshop/
-cd rancher-on-azure-workshop/scripts
-```
-
-![Excercise1-task1-git-clone-azure-workshop](images/Excercise1-task1-git-clone-azure-workshop-16391283982413.png)
-
-3. Run the command to create a resource group on Azure, deploy a VM within this group and install Rancher Server on this VM. This step will take about 10-15 mins to finish.
-
-```bash
-./startlab.sh
-```
-
-![Excercise1-task1-install-rancher-install-script](images/Excercise1-task1-install-rancher-install-script.png)
-
-![Rancher-Success-and-URL](images/Rancher-Success-and-URL.png)
-
-Once done, you can proceed to Task 3.
-
-## Task 3 - Login to Rancher Server
-
-1. Open a browser and navigate to the Rancher Server URL. Type **thisisunsafe** at the page where there's invalid SSL warning to continue. You will be leading to a first-time setup page of Rancher like below. Enter your bootstrap password to continue..
-
-![Excercise1-task1-rancher-login-bootstrap-password](images/Excercise1-task1-rancher-login-bootstrap-password.png)
-
-2. Set your own password.
-
-![Excercise1-task1-rancher-login-setting-own-password](images/Excercise1-task1-rancher-login-setting-own-password.png)
-
-3. Successful Login and Rancher Homepage.
-
-![Excercise1-task1-rancher-login-success-home-page](images/Excercise1-task1-rancher-login-success-home-page-16391272154692.png)
-
-
-All above steps can be also performed in regular way. 
-
 # Regular Way for Task 1 & 2
 
 **TIPS**: If you want to understand better the steps required to setup Rancher Server on Azure Instance, please follow the steps outlined in this section as follows.
@@ -183,6 +134,7 @@ cd rancher-on-azure-workshop/scripts
 ```
 
 This script will
+
 * Install Kubernetes tools (kubectl and helm),
 * Deploy RKE2 cluster
 * Deploy Rancher Server on the RKE2 cluster with helm chart
@@ -221,8 +173,3 @@ You can then land on the **Home** page of Rancher Server.
 In this exercise, you deployed Rancher Server instance. In the next exercise, you will configure Rancher Server to create a few VMs on Azure and automate provisioning of a Kubernetes cluster, which integrates with Azure Load Balancer, on these VMs.
 
 Now, you can move ahead to the [second exercise](./02-Provision-Kubernetes.md) of the lab.
-
-
-
-
-
