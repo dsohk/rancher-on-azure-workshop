@@ -69,7 +69,7 @@ This is what we are going to build in this workshop. We will create a resource g
 
 - Monitoring Kubernetes clusters
 - Securing Kubernetes clusters
-- Rancher Deployment(Fleet)
+- Rancher  Continuous Deployment (Fleet)
 
 13:15 - 13:30 - Q&A
 
