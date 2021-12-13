@@ -35,38 +35,27 @@ TODO: Describe a scenario here.
 
 This is what we are going to build in this workshop. We will create a resource group to contain the resources to be deployed in this workshop. Then, we will deploy Rancher Server as a VM within this resource group. We will then configure the Rancher Server to automate the provisioning of Kubernetes (based on RKE2) into the same resource group but different subnets. We will then explore some management and application deployment features in Rancher. 
 
-![suse-rancher-architecture](./docs/images/suse-rancher-architecture.png)
-
+![Lab Solution Diagram](./docs/images/suse-rancher-lab-diagram.png)
 
 
 ## Agenda
-
- 
 
 09:15 – 09:30 – Introduction (15 mins)
 
 - Workshop Objectives
 - Docker and Kubernetes Overview
 
-
-
 09:30 – 10:00 - Server Deployment
 
 - Rancher Server Installation on Azure Instance
 - Walkthrough of Rancher UI
-
-
 
 10:00  – 11:00 - Kubernetes Deployment
 
 - Provision Kubernetes on Azure Instances
 - Exploring the Clusters with Rancher and the CLI
 
-
-
 11:00 – 11:15 BREAK
-
-
 
 11:15 – 12:15 – Cloud Native Application Deployment
 
@@ -74,19 +63,12 @@ This is what we are going to build in this workshop. We will create a resource g
 - Deploy Intel-Optimized Tensorflow and Jupyter Notebook
 - Deploy stateful Wordpress Applications from the Rancher Marketplace
 
-
-
 12:15 – 12:30 BREAK
-
-
 
 12:30 – 13:15 – Securing and Managing Kubernetes Clusters
 
 - Monitoring Kubernetes clusters
-
 - Securing Kubernetes clusters
-
-  
 
 13:15 - 13:30 - Q&A
 
