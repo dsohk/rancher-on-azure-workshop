@@ -390,11 +390,11 @@ Now that the pods are up, you can go to Services & use the node port to access t
 
 ![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost.png)
 
+In this exercise, you have successfully deployed 2 different applications on Kubernetes (RKE2) cluster using SUSE Rancher. Further both application have been deploying using  2 different methods 1) Manual Method & 2) Using Helm chart we added onto Rancher marketplace.
+
 ### Next steps
 
-In this exercise, you deployed two different applications on RKE2 within Rancher Server, both manually or via a helm chart we added onto Rancher marketplace.
-
-Now, you can move ahead to the [last exercise](./04-SecureAndManage-RKE.md) of the lab.
+Now, you can move ahead to the [next exercise](./04-SecureAndManage-RKE.md) of the lab "Secure and Manager RKE".
 
 
 
