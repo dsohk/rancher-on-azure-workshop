@@ -51,7 +51,7 @@ In previous exercise, we have configured stateful application. In this exercise,
 
 You have successfully completed Rancher Continuous Delivery configuration.
 
-Fleet will now watch the code/configuration in GitHub & any changes will be picked up & be deployed on the target cluster cluster assigned to the Git Repo. 
+Fleet is now configured to watch the applicatino **Hello-World** for code/configuration in GitHub & any changes to the code/configuration will be picked up & be deployed on the target cluster cluster assigned to the cluster group. 
 
 Once the Git Repo is created, it will initate the reconciliation
 
@@ -71,29 +71,27 @@ Click on the Nodeport & the application would open a new browser window
 
 ![Exercise4-Task4-Fleet-Deployment-HelloWorld-Success](images/Exercise4-Task4-Fleet-Deployment-HelloWorld-Success.png)
 
-Now we have our Application Deployed & Running. 
+Now we have our Application **Hello-World**Deployed & Running.  We have successfully completed the application rollout for application residing in GitHub to our cluster. 
 
-Customer would seek new features/services/provide feedback for our Software/Services. To incorporate changes we will need to make changes as necessary. With Continuous Integration (CI)/ Continuous  Deployment (CD) process, we can quickly act of the changes expected, test & roll out the changes quickly to market. 
+#### **Next following steps are not part of this workshop as it require all to have own personal GitHub Account and hence I am going to demonstrate the next steps for you to see how Fleet support your CI/CD requirements**  
+
+Customer would seek new features/services/provide feedback for our Software/Services. To incorporate changes we will need to make necessary code changes. With Continuous Integration (CI), Continuous  Deployment (CD) process, we can quickly act of the changes required, do small incremental changes, test them & then roll out the changes quickly to market. 
 
 Let's see how we can use CI & make use of CD to quickly rollout the changes.
 
-**Note: This part will require you to have your own GitHub Account. You will need to fork the repo to you own account & make changes locally.**
-
-Login to personal GitHub Account. You will see your GitHub ID on the Left Top Corner. Mine is ready ***<!--dipakcpatel78-->***.  You will have your own ID name reflecting. 
+Login to personal GitHub Account. You will see your GitHub ID on the Left Top Corner. Mine is **dipakcpatel78**.  You will have your own ID name reflecting. 
 
 ![Exercise4-Fleet-Personal-Github-Account](images/Exercise4-Fleet-Personal-Github-Account.png)
 
-In the GitHub Search for "dipakcpatel78/fleet-demo-src"
+In the GitHub Search for "dipakcpatel78/fleet-demo-src" and select it. GitHub will take you the Public Repo available. 
 
 ```
 dipakcpatel78/fleet-demo-src
 ```
 
-Select the repo & you will be taken to the Public Repo. 
-
 ![Exercise4-Fleet-Search-for-Fleet-Demo-App-Repo](images/Exercise4-Fleet-Search-for-Fleet-Demo-App-Repo.png)
 
-Click on Fork Icon on the right hand top corner of the Github page which will for the repo to your own Github account.
+Click on Fork Icon on the right hand top corner of the Github page which will for the repo to your own Github account. Following this you will be able to see the content for the repo.
 
 ![Exercise4-Fleet-Fork-Fleet-Demo-App-Repo](images/Exercise4-Fleet-Fork-Fleet-Demo-App-Repo.png)
 
@@ -103,9 +101,12 @@ Go to the Folder `'live/hello-world'`  Section & locate `deployment.yaml`
 
 ![Exercise4-Fleet-Repo-Live-hello-world-Deployment](images/Exercise4-Fleet-Repo-Live-hello-world-Deployment.png)
 
-Let's make some simple changes. Let's change the Container Background Color & also increase the Application Container to ensure we meet workload demand.
+Let's make some simple changes.
 
-Clock on the Pencil like Icon to edit the Deployment Definition.
+1.  Change the Container Background Color 
+2. Increase the Application Container to meet workload demand.
+
+To make changes, click on the Pencil like Icon to edit the Deployment Definition.
 
 Below is the Deployment definition. Will change 2 lines of our deployments from it's present value to new desired value
 
@@ -119,11 +120,9 @@ Provide your own description on the commit and save the changes.
 
 ![Exercise4-Task4-Fleet-Deployment-HelloWorld-Definition-Git-Change-n-Commit](images/Exercise4-Task4-Fleet-Deployment-HelloWorld-Definition-Git-Change-n-Commit.png)
 
+Fleet will pickup changes commited in GitHub and check the current state of the cluster. It will identify that the new desired state required changes and Fleet will begin reconcilization process.  Fleet will ensure the desired cluster state is meet by doing the needful. In our case Deployment Replica count will be bumped from 2 to 5, So additional 3 Containers will be created & the background color of the container from Blue will change to Green
 
-
-Fleet will pickup any changes on Fleet & reconcile the cluster state. The present deployment due to the changes will not reconcile to increase the Deployment Replica count from 2 to 5, So additional 3 Containers will be created & the background color of the container from Blue will change to Green
-
-Additional container will be spin up to meet the new desired Deployment definition. 
+Additional container spining up to meet the new desired Deployment definition. 
 
 ![Exercise4-Task4-Fleet-Update-Post-Git-Commit-New-Container-Creation-n-Old-Container-Termination](images/Exercise4-Task4-Fleet-Update-Post-Git-Commit-New-Container-Creation-n-Old-Container-Termination.png)
 
@@ -131,9 +130,7 @@ If you observe your browser will see the additional container getting created & 
 
 ![Exercise4-Task4-Fleet-CD-CD-Update-Hello-World-Sucess-pg1](images/Exercise4-Task4-Fleet-CD-CD-Update-Hello-World-Sucess-pg1.png)
 
-You have successfully made changes to our code in GitHub, Git remain single source of truth.
-
-Congratulation! you have successfully build our CI/CD pipeline with SUSE Rancher for continuous development and delivery. We hope you have enjoyed exploring a little of what Rancher can do to your kubenetes development, deployment, and management.
+In this exercise you have configured Fleet for Continious Delivery. Remember Fleet is GitOps at scale. Fleet is designed to manage up to a million clusters.
 
 If you are interested, to explore power of Fleet in DevSecOps world, we have another hands-on workshop we have covered the Application life-cycle using Fleet to more close production like scenario. You can explore it to see how SUSE Rancher integrate easily with Github (Version Control), Jenkins (CI Build Server), Maven (Java Build Tool), Harbor (Container Image Registry), Kaniko (Container Image Builder), Sonarqube (Static Code Analysis) ,  Anchore (Container Image Vulnerability Scanner ).
 
@@ -144,7 +141,5 @@ https://github.com/dsohk/rancher-devsecops-workshop.git
 ### Next steps
 
 That's the end of the workshop. Hope you enjoy it and do let us know what you think to make this better. If you are interested to explore further how SUSE Rancher can help your organization to transform your business digitally, please reach out to us.
-
-
 
 **When you have finished playing with your lab environment go to Part 6 - Cleaning up the lab environment**
