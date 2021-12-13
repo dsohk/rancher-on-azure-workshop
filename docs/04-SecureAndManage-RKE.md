@@ -165,9 +165,5 @@ Now, you can move ahead to the [last exercise](./05. Continious Deployment (Flee
 
 
 
-
-
-
-
-
+Now, you can move ahead to the [next exercise](./05-Continious-deployment-fleet.md) of the lab "Continious Deployment (Fleet)".
 
