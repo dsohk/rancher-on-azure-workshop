@@ -37,7 +37,7 @@ In order for us to set label to RKE2 cluster
 
 ## Task 2 - Configure Git Repo
 
-In previous exercise, we have configured stateful application. In this exercise, you will configure a simple stateless web  application which will spin up 2 container Pod with Rancher logo. The application is available at GitHub.
+In previous exercise, we have configured stateful application. In this exercise, you will configure a simple stateless web  application **Hello-World**which will spin up 2 container Pod with Rancher logo. The application is available at GitHub.
 
 1. In Rancher UI > `Global Apps` > `Continous Delivery` > `Git Repos` click on `Create` 
 2.  Give a name to your Git Rep `Name` 
@@ -45,6 +45,7 @@ In previous exercise, we have configured stateful application. In this exercise,
 4. In the Branche Name type `main` 
 5. Use the dropdown option and select the Cluster Group we created previosuly
 6. Provide a Namespace `default`
+7. Leave the rest as default
 
 ![Exercise4-Task4-Fleet-Git-Repo-Create](images/Exercise4-Task4-Fleet-Git-Repo-Create.png)
 
@@ -54,7 +55,7 @@ Fleet will now watch the code/configuration in GitHub & any changes will be pick
 
 Once the Git Repo is created, it will initate the reconciliation
 
-![Exercise4-Task4-Fleet-Reconsliation-after-CI-CD-changes-in Github](images/Exercise4-Task4-Fleet-Reconsliation-after-CI-CD-changes-in Github-16391978545662.png)
+![Exercise4-Task4-Fleet-Reconsliation-after-CI-CD-changes-in-Github](images/Exercise4-Task4-Fleet-Reconsliation-after-CI-CD-changes-in-Github.png)
 
 Once the reconciliation is completed, you can observe the Deployment, Pod & the Services section of the RKE2 Cluster for the App. 
 
