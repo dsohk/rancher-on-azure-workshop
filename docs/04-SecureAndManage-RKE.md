@@ -161,9 +161,5 @@ In this exercise, we have seen how easy it to install and use important cluster 
 
 ### Next steps
 
-Now, you can move ahead to the [last exercise](./05. Continious Deployment (Fleet).md) of the lab "Continious Deployment (Fleet)".
-
-
-
 Now, you can move ahead to the [next exercise](./05-Continious-deployment-fleet.md) of the lab "Continious Deployment (Fleet)".
 

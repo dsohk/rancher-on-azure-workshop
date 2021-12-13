@@ -1,77 +1,58 @@
-Exercise 5 Continous Deployment (Fleet)
+# Exercise 5 Continous Deployment (Fleet)
 
 What is Fleet ?
 
-Fleet is fundamentally a set of Kubernetes custom resource definitions (CRDs) and controllers to manage GitOps for a single Kubernetes cluster or a large-scale deployment of Kubernetes clusters
+Fleet is GitOps at scale. Fleet is designed to manage up to a million clusters. It’s also lightweight enough that it works great for a [single cluster](https://fleet.rancher.io/single-cluster-install/) too, but it really shines when you get to a [large scale.](https://fleet.rancher.io/multi-cluster-install/) By large scale we mean either a lot of clusters, a lot of deployments, or a lot of teams in a single organization.
+
+Fleet comes preinstalled in Rancher and is managed by the **Continous Delivery** option in the Rancher UI.
 
 ![Fleet Architecture](images/Fleet Architecture.png)
 
-## Rancher Continuous Delivery (CD)
-
-### Configure Rancher Continuous Delivery (CD)
+## Task 1 - Setup Rancher Continuous Delivery (CD)
 
 1. Click the top left 3-line bar icon to expand the navigation menu. Click **Continuous Delivery** menu item.
-
-replace below on with right image which point to Continuous Delivery.
 
 ![Exercise4-Fleet-Continous-Delivery](images/Exercise4-Fleet-Continous-Delivery.png)
 
 Before we proceed, let's verify if we can see all our cluster in Continuous Delivery
 
-### Create a Cluster Group
-
-1. Navigate to `Cluster Group` and click on `Create`. Give it a name `development`
-
-Here we are going to use the same Label which was used to create `Cluster1` and `Cluster2`.
-
-1. Under Cluster Selector provide the following values Key:`distro` Operator: `in list` Value:`rke2`
-
-Once you key in the key:value pair, Rancher will use the selector labels to indentify the clusters to be associated with our newly created cluster group in Rancher Continuous Delivery. You will see it show 2/4 cluster been selected.
-
-1. Click on `save` which will create our first Cluster Group.
+2. Create a Cluster Group
+   1. Under Continious Delivery, navigate to `Cluster Group` and click on `Create`. Give it a name of your choise.
+   2. Under Cluster Selector provide the following values Key:`distro` Operator: `in list` Value:`rke2`
+   3. Rancher Fleet will use the key: value pair to match to clusters to identify the cluster to be associated with newly created Cluster Group in Rancher Continious Delivery. 
+   4. Click on `save` which will create our first Cluster Group.
 
 ![Exercise4-Task4-Fleet-Cluster-Group-Rke2-cluster-azure-demo](images/Exercise4-Task4-Fleet-Cluster-Group-Rke2-cluster-azure-demo.png)
 
-### Configure Git Repo
+We don't see any cluster matching the label as our cluster (RKE2), we haven't set any cluster labels. Once you apply the cluster with the cluster labels, it would match & provide the result matching.
 
-Before we ahead for configuring the Git Repo, we need to Git Repository URL.
+In order for us to set label to RKE2 cluster
 
-Follow the instruction below to get to Git Repository URL.
-
-1. Click on the Repository URL and you will be taken into the `code` tab. In the code tab, you will be in the `main` branch.
-
-   ```
-   https://github.com/dipakcpatel78/fleet-demo-src.git
-   ```
-
-   
-
-2. Click on `code` tab, use the drop down menu and you will be presented with the repositroy url. 
-
-3. Click on the clipboard icon to copy the URL from `HTTPS` tab.
-
-![Excercise4-Git-Fleet-Repo](images/Excercise4-Git-Fleet-Repo.png)
-
-![Excercise4-Git-Fleet-Repo-URL](images/Excercise4-Git-Fleet-Repo-URL.png)
-
-1. In Rancher UI > `Global Apps` > `Continous Delivery` > `Git Repos` click on `Create` a) Give a name to your Git Rep `Name` b) Paste the Git Repo URL in `Repository URL`
-   c) In the Branche Name type `main` d) Use the dropdown option and select the Cluster Group we created previosuly `rke2-clusters-azure-demo`. e) Provide a Namespace `default`
-
-Sample output of the GitRepo configuration below
-
-![Exercise4-Task4-Fleet-Git-Repo-Create](images/Exercise4-Task4-Fleet-Git-Repo-Create.png)
-
-Since we haven't yet added the desire cluster label to match the newly created cluster group, we will now add cluster label.
-
-Adding Label to Cluster
+1. Click the top left 3-line bar icon to expand the navigation menu. Click **Cluster Management** menu item.
+2. Click on the 3 Vertical dots to Edit the config of the RKE2 cluster
+3. Head to teh Cluster Configuration - Labels and Annotations Page
+4. Under Labes provide key:value pair. In our case **Key:`distro`**  and **Value: `rke2`**
 
 ![Exercise4-Task4-Second-RKE2-Cluster-Creation-Label-Add-Labels](images/Exercise4-Task4-Second-RKE2-Cluster-Creation-Label-Add-Labels.png)
 
+## Task 2 - Configure Git Repo
+
+In previous exercise, we have configured stateful application. In this exercise, you will configure a simple stateless web  application which will spin up 2 container Pod with Rancher logo. The application is available at GitHub.
+
+1. In Rancher UI > `Global Apps` > `Continous Delivery` > `Git Repos` click on `Create` 
+2.  Give a name to your Git Rep `Name` 
+3. Paste the Git Repo URL in `Repository URL`
+4. In the Branche Name type `main` 
+5. Use the dropdown option and select the Cluster Group we created previosuly
+6. Provide a Namespace `default`
+
+![Exercise4-Task4-Fleet-Git-Repo-Create](images/Exercise4-Task4-Fleet-Git-Repo-Create.png)
+
 You have successfully completed Rancher Continuous Delivery configuration.
 
+Fleet will now watch the code/configuration in GitHub & any changes will be picked up & be deployed on the target cluster cluster assigned to the Git Repo. 
 
-
-Git Repository Reconciliation
+Once the Git Repo is created, it will initate the reconciliation
 
 ![Exercise4-Task4-Fleet-Reconsliation-after-CI-CD-changes-in Github](images/Exercise4-Task4-Fleet-Reconsliation-after-CI-CD-changes-in Github-16391978545662.png)
 
