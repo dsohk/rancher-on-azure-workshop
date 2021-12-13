@@ -146,8 +146,5 @@ Last thing.
 
 ### Next steps
 
-When you have finished playing with your lab environment go to part 6 - clearning up the lab environement [next exercise](./06-CleanUpLab.md) of the lab "CleanUpLabEnvironment".
+**When you have finished playing with your lab environment go to part 6 - clearning up the lab environement [next exercise](./06-CleanUpLab.md) of the lab "CleanUpLabEnvironment".**
 
-Now, you can move ahead to the [next exercise](./05-Continious-deployment-fleet.md) of the lab "Continious Deployment (Fleet)".
-
-**When you have finished playing with your lab environment go to Part 6 - Cleaning up the lab environment**
