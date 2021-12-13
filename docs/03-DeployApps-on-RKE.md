@@ -6,32 +6,38 @@ Duration: 45 minutes
 
 Now, we have got a RKE2 based Kubernetes cluster. Let's deploy a workload on it. In this lab, we are going to deploy two applications with two different approaches. 
 
-The first application we are going to deploy is jupyter book to help AI/ML training on this RKE2 cluster with **Intel(R) Optimization for TensorFlow**, which is a binary distribution of TensorFlow with Intel(R) oneAPI Deep Neural Network Library (oneDNN) primitives, a popular performance library for deep-learning applications.  TensorFlow is a widely used machine-learning framework in the deep-learning arena, demanding efficient use of computational resources. To take full advantage of Intel(R) architecture and to extract maximum performance, the TensorFlow framework has been optimized using oneDNN primitives.
+1. **Intel-optimized-tensorflow**
+2. **Wordpress (Stateful App)**, which stores all data permanently on Azure Disk. 
 
-Then, we will deploy **Wordpress** on to the same RKE2 cluster, which stores its all data permanently on Azure Disk.
+But before we go ahead with the application deployment, let understand how we can interact with our Kubernetes Cluster.
 
 ## Task 1: Interacting with the Kubernetes Cluster
 
 In this step, we will be showing basic interaction with our Kubernetes cluster.
 
-1. If you have not done this yet, navigate to **Cluster Management** from the left menu, observe the rke2 cluster on the list, click **Explore** button to open the **Cluster Explorer** page.
+1. Click the top left 3-line bar icon to expand the navigation menu. Click **Cluster Management** menu item.
+1.  Click **Explore** button to open the **Cluster Explorer** page of the cluster you want to manage.
 
 ![rancher-rke2-cluster-explorer](./images/rancher-rke2-cluster-explorer.png)
 
+**Note the diagrams dials, which illustrate cluster capacity, and the box that show you the recent events in your cluster.**
 
-
-1. **Note the diagrams dials, which illustrate cluster capacity, and the box that show you the recent events in your cluster.**
-2. Click the Kubectl Shell button (the button with the Prompt icon) in the top right corner of the Cluster Explorer, and enter kubectl get pods --all-namespaces and observe the fact that you can interact with your Kubernetes cluster using kubectl.
+3. Click the **Kubectl Shell** button (the button with the Prompt icon) in the top right corner of the Cluster Explorer.
+4. You can interact with your Kubernetes Cluster using kubeclt. Example kubectl get pods --all-namespaces, will list all pods in all namespace in the cluster. 
 
 ![Exercise3-task1-Exploring-cluster-Kubectl-shell](images/Exercise3-task1-Exploring-cluster-Kubectl-shell-16391374923465.png)
 
-1. Also take note of the Download Kubeconfig File button next to it which will generate a Kubeconfig file that can be used from your local desktop or within your deployment pipelines.
+5. Click the **Kubeconfig file** button (the button with the Prompt icon) in the top right corner of the Cluster Explorer. It will generate the cluster Kubeconfig file which will be download to your local workstation. You can use the kubectl application on your local system to point to the cluster so that you can manager it form your workstation.
 
 ![Exercise3-task1-Exploring-cluster-download-kubeconfig](images/Exercise3-task1-Exploring-cluster-download-kubeconfig.png)
 
-1. In the left menu, you have access to all Kubernetes resources, the Rancher Application Marketplace and additional cluster tools.
+6. In the left menu, you have access to all Kubernetes resources, the Rancher Application Marketplace and additional cluster tools.
 
 ![Exercise3-task1-Exploring-cluster-All-Cluster-Resources](images/Exercise3-task1-Exploring-cluster-All-Cluster-Resources.png)
+
+
+
+For Persistent Storage, we will be using Azure Disk.  Let see how we can use configure Azure Disk for RKE2 cluster 
 
 ## Task 2: Create a default Storage Class
 
@@ -46,15 +52,15 @@ In a Kubernetes Cluster, it can be desirable to have persistent storage availabl
 
 ![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create.png)
 
-Keep all the settings as default, scroll to the bottom and click **Install**.
-
-Once the new Storage Class is installed, go to **Storage** > **Storage Classes**
+Once the new Storage Class is installed, go to **Storage** > **Storage Classes** and we should see our Azure-Disk Storage Class created. If you observe carefully, under the default column, its shows "-" which indicates there is no default storage class yet. 
 
 ![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create-Success](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Create-Success.png)
 
-Observe the **azure-disk** storage class and choose the three-dot "..." menu to indicate it is the **Default** storage class.
+Next step would be make Azure-Disk as the default storage class. Click on the **Three Vertical dot**menu at the right hand side of the page against Azure Disk and you can click on Set as **Default** which will now make Azure-Disk as our default storage class
 
 ![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk.png)
+
+We now Azure-Disk as our default Storage Class
 
 ![Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk-default-stroage-class](images/Exercise3-task2-Persistent-Storage-Storage-Strorage-Class-Azure-disk-default-stroage-class.png)
 
@@ -116,6 +122,16 @@ At this point, you should see pod is created successfully with a volume attached
 ![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk.png)
 
 ## Task 4: Deploy Intel-Optimised Tensorflow with Jupyter Notebook
+
+1. Intel-optimized-tensorflow**
+
+The first application we are going to deploy is jupyter book to help AI/ML training on this RKE2 cluster with **Intel(R) Optimization for TensorFlow**, which is a binary distribution of TensorFlow with Intel(R) oneAPI Deep Neural Network Library (oneDNN) primitives, a popular performance library for deep-learning applications.  TensorFlow is a widely used machine-learning framework in the deep-learning arena, demanding efficient use of computational resources. To take full advantage of Intel(R) architecture and to extract maximum performance, the TensorFlow framework has been optimized using oneDNN primitives.
+
+2. **Wordpress (Stateful App)**
+
+Then, we will deploy **Wordpress** on to the same RKE2 cluster, which stores its all data permanently on Azure Disk.
+
+## 
 
 In this task, we will be creating a Kubernetes Deployment and Kubernetes Service for an Intel-optimized tensorflow workload. For the purposes of this lab, we will be using the container image `intel/intel-optimized-tensorflow:2.6.0-jupyter` but you can use your own container image if you have one for testing.
 

@@ -10,7 +10,7 @@ At this point, we are going to bring in observability for the Kubernetes cluster
 
 Lastly, before going production, we want to ensure the Kubernetes cluster running the workloads are secure and meet the industry standard security baseline, such as the one from Center for Internet Security (CIS). We will see how Rancher made us productive in ensuring the cluster meet the security standard. 
 
-
+Can we get interacting section here. It would go with flow of managing Kubernetes.  
 
 ## Task 1: Enable Rancher Monitoring
 
