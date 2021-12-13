@@ -68,56 +68,60 @@ We now Azure-Disk as our default Storage Class
 
 1. Create a PersistentVolumeClaim
 
-   1. Navigate to **Storage** > **PersistentVolumeClaims** in the left menu.
+   1. Navigate to **Storage** > **PersistentVolumeClaims(PVC)** in the left menu.
    2. Click **Create** button.
    3. Fill in the Storage Class creation form
       1. Name: **test**
+      1. Source: Use a Storage Class to provision a new PersistentVolume
       2. storageclass: **azure-disk**
-   4. Click **Save** button to continue.
+   4. Click **Create** button.
 
 ![Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk](images/Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk.png)
 
-
+We can now see a successful PVC, where we are having 10Gi of Azure-Disk.
 
 ![Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk-Success](images/Exercise3-task3-step1-Validate-Presistent-Storage-working-Presistent-Volume-Claim-Azure-disk-Success.png)
 
-1. Create a Pod that consumes the PVC to create a volume via storage class
+We now have the Storage Class and Persistent Volume Claim configured. Now we set-up an test application/Pod to see if Pod is able to use them for it's storage needs. 
+
+2. Create a Pod that consumes the PVC to create a volume via storage class
 
    1. Navigate to **Workload** > **Pods** in the left menu.
+
    2. Click **Create from YAML** button
+
    3. Copy and paste the YAML below and replace the input box in the Pod Create form. 
 
-   ```YAML
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: task-pv-pod
-     namespace: default
-   spec:
-     volumes:
-       - name: task-pv-storage
-         persistentVolumeClaim:
-           claimName: test
-     containers:
-       - name: task-pv-container
-         image: nginx
-         ports:
-           - containerPort: 80
-             name: "http-server"
-         volumeMounts:
-           - mountPath: "/usr/share/nginx/html"
-             name: task-pv-storage
-   ```
 
-   4. Click **Create** button to continue.
+```YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task-pv-pod
+  namespace: default
+spec:
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: test
+  containers:
+    - name: task-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+```
+
+4. Click **Create** button to continue.
+
+   Note: Ignore the error in red in the sample output below, we have adapted the YAML Pod Definition file which mean you will not encounter the issue as represented in the sample output below.
 
 ![Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage class-Azure-disk.png](images/Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage class-Azure-disk.png.png)
 
-Pod Definition Template for reference.
-
-![Exercise3-task3-step2-Pod-definition-template-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-definition-template-Consuming-PVC-via-storage class-Azure-disk.png)
-
-At this point, you should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
+5. You should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
 
 ![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk.png)
 
