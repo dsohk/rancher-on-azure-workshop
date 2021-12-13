@@ -125,25 +125,17 @@ spec:
 
 ![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk.png)
 
-## Task 4: Deploy Intel-Optimised Tensorflow with Jupyter Notebook
+## Task 4: Application Deployment
 
-1. Intel-optimized-tensorflow**
+### 1. Deploy Intel-Optimized TensorFlow with Jupyter Notebook
 
 The first application we are going to deploy is jupyter book to help AI/ML training on this RKE2 cluster with **Intel(R) Optimization for TensorFlow**, which is a binary distribution of TensorFlow with Intel(R) oneAPI Deep Neural Network Library (oneDNN) primitives, a popular performance library for deep-learning applications.  TensorFlow is a widely used machine-learning framework in the deep-learning arena, demanding efficient use of computational resources. To take full advantage of Intel(R) architecture and to extract maximum performance, the TensorFlow framework has been optimized using oneDNN primitives.
-
-2. **Wordpress (Stateful App)**
-
-Then, we will deploy **Wordpress** on to the same RKE2 cluster, which stores its all data permanently on Azure Disk.
-
-## 
 
 In this task, we will be creating a Kubernetes Deployment and Kubernetes Service for an Intel-optimized tensorflow workload. For the purposes of this lab, we will be using the container image `intel/intel-optimized-tensorflow:2.6.0-jupyter` but you can use your own container image if you have one for testing.
 
 When we deploy our container in a pod, we probably want to make sure it stays running in case of failure or other disruption. Pods by nature will not be replaced when they terminate, so for a web service or something we intend to be always running, we should use a Deployment.
 
 The deployment is a factory for pods, so you'll notice a lot of similairities with the Pod's spec. When a deployment is created, it first creates a replica set, which in turn creates pod objects, and then continues to supervise those pods in case one or more fails.
-
-![rancher-rke2-deploy-intel-tensorflow-jupyter](./images/rancher-rke2-deploy-intel-tensorflow-jupyter.png)
 
 1. Under the Workloads sections in the left menu, go to **Deployments** and press **Create** in the top right corner and enter the following criteria:
 
@@ -156,17 +148,17 @@ The deployment is a factory for pods, so you'll notice a lot of similairities wi
    - Enter **8888** for the **Private Container Port**
    - **Note** the other capabilities you have for deploying your container. We won't be covering these in this lab, but you have plenty of capabilities here.
 
-3. Scroll down and click **Create**
+2. Scroll down and click **Create**
 
-4. You should see a new **intel** deployment. If you click on it, you will see 1 Pod getting deployed.
+![Exercise3-Task4-Cluster-Deployment](images/Exercise3-Task4-Cluster-Deployment.png)
 
-4. From here you can click on a Pod, to have a look at the Pod's events. In the **three-dots** menu on a Pod, you can also access the logs of a Pod or start an interactive shell into the Pod.
+![rancher-rke2-deploy-intel-tensorflow-jupyter](./images/rancher-rke2-deploy-intel-tensorflow-jupyter.png)
+
+3. You should see a new **intel** deployment. If you click on it, you will see 1 Pod getting deployed. 
 
 ![Exercise3-task4-Deploy-Intel-App-Status-Updating](images/Exercise3-task4-Deploy-Intel-App-Status-Updating.png)
 
 ![Exercise3-task4-Deploy-Intel-App-Status-Container-Creation](images/Exercise3-task4-Deploy-Intel-App-Status-Container-Creation.png)
-
-
 
 ![Exercise3-task4-Deploy-Intel-App-Running-Success](images/Exercise3-task4-Deploy-Intel-App-Running-Success.png)
 
@@ -174,15 +166,17 @@ The deployment is a factory for pods, so you'll notice a lot of similairities wi
 
 ![rancher-rke2-pod-intel-tensorflow-jupyter](./images/rancher-rke2-pod-intel-tensorflow-jupyter.png)
 
-5. Click on **View Logs** of the intel pod. You should notice the token shown in the log entry. Copy this token and you need it when you first time open the jupyter notebook to setup your own password.
+4. Click on **View Logs** of the intel pod. You should notice the token shown in the log entry. Copy this token and you need it when you first time open the jupyter notebook to setup your own password.
 
 ![rancher-rke2-deploy-inte-tensorflow-jupyter-log](./images/rancher-rke2-deploy-inte-tensorflow-jupyter-log.png)
 
-6. In the left menu under **Service Discovery** > **Services**, you will find a new Node Port Service which exposes the Intel-Optimized tensorflow with jupyter application publicly on a high port on a node. You can click on the linked Port to directly access it.
+5. In the left menu under **Service Discovery** > **Services**, you will find a new Node Port Service which exposes the Intel-Optimized tensorflow with jupyter application publicly on a high port on a node. You can click on the linked Port to directly access it.
 
 ![rancher-rke2-service-intel-tensorflow-jupyter](./images/rancher-rke2-service-intel-tensorflow-jupyter.png)
 
 ![Exercise3-task4-App-Intel-Services-Type-Nodeport](images/Exercise3-task4-App-Intel-Services-Type-Nodeport.png)
+
+While we looked at the container log entries, we also view the token created by the application. Copy this token as you will need it when you first time open the jupyter notebook to setup your own password.
 
 ![Exercise3-task4-App-Intel-WebUI-Entering-Token-Acceessing-IntelApp](images/Exercise3-task4-App-Intel-WebUI-Entering-Token-Acceessing-IntelApp.png)
 
@@ -199,18 +193,57 @@ Now, let's try to run some sample tensorflow code.
 
 ![jupyter-notebook-on-rancher-rke2](./images/jupyter-notebook-on-rancher-rke2.png)
 
-## Task 6: Add a new chart repository
+### Key take away:
 
-Now, let's try the easiest way to install a complete Wordpress into our cluster, is through the built-in Apps Marketplace. In addition to the Rancher and partner provided apps that are already available. You can add any other Helm repository and allow the installation of the Helm charts in there through the Rancher UI.
+**Intel-optimized TensorFlow Jupyter image provides 15-20% improvement on Azure vs the the  upstream tensorflow/tensorflow:2.6.0-jupyter.**
 
-By Default two Repository are provided by SUSE Rancher
+## Task 6 : Stateless Application Deployment
 
-1) Rancher
-2) Partners
+An important criteria to consider before running a new application, in production, is the app’s underlying architecture. A term often used in this context is that the application is ‘stateless’ or that the application is ‘stateful’. Both types have their own pros and cons.
 
-![Exercise3-task6-Default-Repository-provided-Rancher](images/Exercise3-task6-Default-Repository-provided-Rancher.png)
+### Stateless Application 
+
+A stateless application is one which depends on no persistent storage. The only thing your cluster is responsible for is the code, and other static content, being hosted on it. That’s it, no changing databases, no writes and no left over files when the pod is deleted.
+
+we will cover the stateless application in Section 5 - Continuous Deployment(CD). 
+
+### Stateful application
+
+Stateless application on the other hand, has several other parameters it is supposed to look after in the cluster. There are dynamic databases which, even when the app is offline or deleted, persist on the disk. On a distributed system, like Kubernetes, this raises several issues. We will look at them in detail, but first let’s clarify some misconceptions.
+
+Before we proceed to deploy the application, let see what application are readily available in Kubernetes and how to get our own application be made available if required. 
+
+To know what application are available from Rancher out of the box
+
+1. Click the top left 3-line bar icon to expand the navigation menu. Click **Cluster Management** menu item.
+
+1. Click **Explore** button to open the **Cluster Explorer** page of the cluster you want to manage.
+
+1. **App and Marketplace** - **Repository**(**Helm** based). 
+
+1. By default two repository are provided by Rancher 
+
+   1) **Rancher**
+
+   1) **Partners**
+
+![Exercise4-Apps-Marketplace-Repo](images/Exercise4-Apps-Marketplace-Repo.png)
+
+5. Chart shows all the application under the Rancher & Partners Repositories.
+
+![Exercise4-App-MarketPlace-Charts](images/Exercise4-App-MarketPlace-Charts.png)
+
+However if you can't find the desired application under Rancher & Partners, what do you do?
+
+We simply add additional repository to make sure the application are then been made available.  If you use the filter box and search for **wordpress**, your search will result into display zero app with name **wordpress**. 
+
+Now for us to have app (**wordpress**) available , we will need to add the helm based repository which has the application available which kubernetes cluster can easily deploy from .
+
+You can add any external **(Public/Private) Helm repository** to Rancher which will then allow the deployment of the application. 
 
 You can add you public/private repository as well. Let add a new repository.
+
+Let's add the required repository so that we can deploy **wordpress**
 
  In the left menu go to **Apps & Marketplace** > **Chart repositories**
 
@@ -228,9 +261,11 @@ You can add you public/private repository as well. Let add a new repository.
 
 ![rancher-rke2-marketplace-addrepo](./images/rancher-rke2-marketplace-addrepo.png)
 
-We can check the newly created repository.
+Check the newly created repository.
 
 ![Exercise3-task6-Repository-Create-Success](images/Exercise3-task6-Repository-Create-Success.png)
+
+Now if you search for **wordpress** application, you will get it.
 
 ![rancher-rke2-marketplace-rodeo-chart](./images/rancher-rke2-marketplace-rodeo-chart.png)
 
@@ -245,9 +280,13 @@ Let's deploy a Wordpress instance into the cluster that uses the Azure Disk stor
 5. Next create a new namespace in the wordpress project. In the list of all **Projects/Namespaces**, scroll down to the wordpress project and click the **Create Namespace** button.
 6. Enter the **Name** wordpress and click **Create**.
 
+Creating Project
+
 ![Exercise3-task7-Create-New-Project-Wordpress](images/Exercise3-task7-Create-New-Project-Wordpress.png)
 
 ![Exercise3-task7-Create-New-Project-Wordpress-Success](images/Exercise3-task7-Create-New-Project-Wordpress-Success.png)
+
+Creating Namespace
 
 ![Exercise3-task7-Create-New-Namespace-wordpress-pg2](images/Exercise3-task7-Create-New-Namespace-wordpress-pg2.png)
 
