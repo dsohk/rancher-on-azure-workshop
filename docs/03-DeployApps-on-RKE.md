@@ -119,9 +119,11 @@ spec:
 
    Note: Ignore the error in red in the sample output below, we have adapted the YAML Pod Definition file which mean you will not encounter the issue as represented in the sample output below.
 
-![Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage class-Azure-disk.png](images/Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage class-Azure-disk.png.png)
+![Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage-class-Azure-disk](images/Exercise3-task3-step2-Pod-definition-sample-Consuming-PVC-via-storage-class-Azure-disk.png)
 
 5. You should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
+
+![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk-16394102962431.png)
 
 ![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk.png)
 
