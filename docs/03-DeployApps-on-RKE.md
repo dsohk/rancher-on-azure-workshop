@@ -123,9 +123,9 @@ spec:
 
 5. You should see pod is created successfully with a volume attached to it. This indicates the Storage Class is setup properly.
 
-![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk-16394102962431.png)
+![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage-class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage-class-Azure-disk.png)
 
-![Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk](images/Exercise3-task3-step2-Pod-Success-Consuming-PVC-via-storage class-Azure-disk.png)
+
 
 ## Task 4: Application Deployment
 
