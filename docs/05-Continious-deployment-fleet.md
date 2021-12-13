@@ -142,4 +142,12 @@ https://github.com/dsohk/rancher-devsecops-workshop.git
 
 That's the end of the workshop. Hope you enjoy it and do let us know what you think to make this better. If you are interested to explore further how SUSE Rancher can help your organization to transform your business digitally, please reach out to us.
 
+Last thing. 
+
+### Next steps
+
+When you have finished playing with your lab environment go to part 6 - clearning up the lab environement [next exercise](./06-CleanUpLab.md) of the lab "CleanUpLabEnvironment".
+
+Now, you can move ahead to the [next exercise](./05-Continious-deployment-fleet.md) of the lab "Continious Deployment (Fleet)".
+
 **When you have finished playing with your lab environment go to Part 6 - Cleaning up the lab environment**
