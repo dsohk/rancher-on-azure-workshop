@@ -18,7 +18,9 @@ To deploy the *Rancher Monitoring* feature:
 
 1. Click **Cluster Tools** button at the bottom of the left pane in Rancher Cluster Explorer View.
 
-2. Locate the **Monitoring** chart, and click on it.
+2. Locate the **Monitoring** chart, and click install.
+
+3. This leads you to the installation wizard. In the first **Metadata** step, choose **System** in the **Install into Project** option and click **Next**.
 
    ![rancher-rke2-cluster-tools](./images/rancher-rke2-cluster-tools.png)
 
@@ -26,23 +28,14 @@ To deploy the *Rancher Monitoring* feature:
 
    
 
-   
-
-   
-
-   
-
-3. On the Monitoring App Detail page click the **Install** button in the top right
-
-4. This leads you to the installation wizard. In the first **Metadata** step, choose **System** in the **Install into Project** option and click **Next**.
-
-5. In the **Values** step, select the **Prometheus** section on the left. Change **Resource Limits** > **Requested CPU** from 750m to 250m and **Requested Memory** from 750Mi to 250Mi. This is required because our scenario virtual machine has limited CPU and memory available.
+4. In the **Values** step, select the **Prometheus** section on the left. Change **Resource Limits** > **Requested CPU** from 750m to 250m and **Requested Memory** from 750Mi to 250Mi. This is required because our scenario virtual machine has limited CPU and memory available.
 
 ![rancher-rke2-deploy-prometheus-cpurequest](./images/rancher-rke2-deploy-prometheus-cpurequest.png)
 
+5. In the Alerting section, continue accepting the default values
+6. In Grafana section, continue accepting the default values
+
 ![Exercise4-Task1-Rancher-Monitoring-App-AlterManager-Value](images/Exercise4-Task1-Rancher-Monitoring-App-AlterManager-Value.png)
-
-
 
 ![Exercise4-Task1-Rancher-Monitoring-App-Grafana-Value](images/Exercise4-Task1-Rancher-Monitoring-App-Grafana-Value.png)
 
@@ -89,8 +82,6 @@ In addition, you can watch the metric details
 
 ![Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-ETCD-Metrics-Summary](images/Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-ETCD-Metrics-Summary.png)
 
-
-
 ![Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Kubernetes-Component-Metrics-Summary](images/Exercise4-Task2-Rancher-Monitoring-RKE2-Homepage-Kubernetes-Component-Metrics-Summary.png)
 
 ## Task 3: Enable CIS Benchmark Scanning
@@ -116,37 +107,61 @@ In this task, we are going to scan the Kubernetes cluster to ensure its configur
 
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-App-Success](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-App-Success.png)
 
-CIS Profiles
+On CIS Benchmarks App deployments, you will be provided with 
 
-![Exercise4-Task1-Deploy-CusterTools-CIS-Profiles-Available](images/Exercise4-Task1-Deploy-CusterTools-CIS-Profiles-Available.png)
+1) Benchmark Version 
+2) CIS Profiles
 
-CIS Benchmark
+Available Benchmark Versions 
 
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-Versions](images/Exercise4-Task1-Deploy-CusterTools-CIS-Benchmark-Versions.png)
 
-Create a CIS Scan
+Available CIS Profiles
+
+![Exercise4-Task1-Deploy-CusterTools-CIS-Profiles-Available](images/Exercise4-Task1-Deploy-CusterTools-CIS-Profiles-Available.png)
+
+## Task 4 - How to run a CIS Scan.
+
+1. Go to the **Cluster Explorer** in the Rancher UI. In the top left drop down menu, click **Cluster Explorer > CIS Benchmark.**
+2. In the **Scans** section, click **Create.**
+3. Choose a cluster scan profile. The profile determines which CIS Benchmark version will be used and which tests will be performed. If you choose the Default profile, then the CIS Operator will choose a profile applicable to the type of Kubernetes cluster it is installed on.
+4. Click **Create.**
 
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Create](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Create.png)
 
 ![rancher-rke2-cis-scan-create](./images/rancher-rke2-cis-scan-create.png)
 
+Once you hit create, a security-scan-runner container will be spun up as sample below.
+
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations.png)
 
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations-both-worker-nodes](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Creations-both-worker-nodes.png)
 
+We can see the scan job running.
+
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Running-Status](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Running-Status.png)
+
+Once the scan job is completed, the container created by the scan process is terminated 
 
 ![Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Termination-Post-Run-Opearation](images/Exercise4-Task1-Deploy-CusterTools-CIS-Scan-Pod-Termination-Post-Run-Opearation.png)
 
+We will see the result of the scan. You can also download the result to share with your security practice team or auditors. 
+
 ![Exercise4-Task1-Cluster-CIS-Scan-Download-Scan-Report](images/Exercise4-Task1-Cluster-CIS-Scan-Download-Scan-Report.png)
+
+You can see the scan result at high level along with it's status.
 
 ![rancher-rke2-cis-scan-result](./images/rancher-rke2-cis-scan-result.png)
 
+Download the report and you can also see the remediation to task/process that needs attention. 
+
 ![Exercise4-Task1-Cluster-CIS-Scan-Remediation](images/Exercise4-Task1-Cluster-CIS-Scan-Remediation.png)
+
+In this exercise, we have seen how easy it to install and use important cluster tools such as Promethus, Grafana, CIS Scan.
 
 ### Next steps
 
-That's the end of the workshop. Hope you enjoy it and do let us know what you think to make this better. If you are interested to explore further how SUSE Rancher can help your organization to transform your business digitally, please reach out to us.
+Now, you can move ahead to the [last exercise](./05. Continious Deployment (Fleet).md)) of the lab "Continious Deployment (Fleet)".
 
 
 
