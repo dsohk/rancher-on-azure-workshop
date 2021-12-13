@@ -305,13 +305,13 @@ In this step, we will be deploying Wordpress in the Kubernetes cluster. This wor
    
    ![Exercise3-task8-Apps-MarketPlace-Repo-Wordpress-App](images/Exercise3-task8-Apps-MarketPlace-Repo-Wordpress-App.png)
 
+   
+   
    ![Exercise3-task8-Deployment-Wordpress-Create](images/Exercise3-task8-Deployment-Wordpress-Create.png)
    
    
    
    ![rancher-rke2-deploy-wordpress-wordpress-setting](./images/rancher-rke2-deploy-wordpress-wordpress-setting.png)
-   
-   
    
    - Enable **Database setting** > **MariaDB Persistent Volume Enabled**
    
@@ -320,10 +320,15 @@ In this step, we will be deploying Wordpress in the Kubernetes cluster. This wor
    
    
    - **Services and Load Balancing** > Uncheck "Expose app using Layer 7 Load Balancer", choose NodePort as Service Type and leave all the rest as default.
+   - Scroll to the bottom and click **Install**.
 
 ![rancher-rke2-deploy-wordpress-service-setting](./images/rancher-rke2-deploy-wordpress-service-setting.png)
 
-1. Scroll to the bottom and click **Install**.
+5. Wordpress Deployment will being to create 
+
+   1) Wordpress 
+
+   1) Wordpress-MariaDB conatiners.  MariaDB will be using persistent storage 
 
 ![Exercise3-task8-Deployment-In-Progress](images/Exercise3-task8-Deployment-In-Progress.png)
 
@@ -335,9 +340,9 @@ Note that you now have two Persistent Volumes available under **Storage** > **Pe
 
 ![Exercise3-task8-Deployment-App-Wordpress-Pod-Container-Shell](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Container-Shell-16391497067927.png)
 
-![Exercise3-task8-Deployment-App-Wordpress-Pod-Logs](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Logs-16391497177318.png)
+6. You can also watch the container Log for the respective Pod.
 
-MariaDB
+![Exercise3-task8-Deployment-App-Wordpress-Pod-Logs](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Logs-16391497177318.png)
 
 ![Exercise3-task8-Deployment-App-MariaDB-Container-Shell](images/Exercise3-task8-Deployment-App-MariaDB-Container-Shell-16391498455639.png)
 
@@ -349,23 +354,23 @@ MariaDB
 
 ![Exercise3-task8-Deployment-App-MariaDB-Container-Shell](images/Exercise3-task8-Deployment-App-MariaDB-Container-Shell.png)
 
-1. It may take a few minutes to deploy wordpress in this lab, once the installation is complete, navigate to **Service Discovery** > **Services**. There you will see a new high port next to Wordpress service. Click on the URL to access Wordpress.
+7. It may take a few minutes to deploy wordpress in this lab, once the installation is complete, navigate to **Service Discovery** > **Services**. There you will see a new high port next to Wordpress service. Click on the URL to access Wordpress. 
 
-1. - *Note: You may receive* ***404\****,* ***502\****, or* ***503\*** *errors while the wordpress app is coming up. Simply refresh the page occasionally until Wordpress is available*
-2. 
-3. 
+   *Note: You may receive* ***404\****,* ***502\****, or* ***503\*** *errors while the wordpress app is coming up. Simply refresh the page occasionally until Wordpress is available*
 
 ![Exercise3-task8-Deployment-Wordpress-Services](images/Exercise3-task8-Deployment-Wordpress-Services.png)
 
-Log into Wordpress using your set admin credentials and create a new blog post. If you delete the **wordpress-mariadb** pod or click **Redeploy** now, your post will not be lost.
+8. Log into Wordpress using your set admin credentials and create a new blog post. 
 
 ![Exercise3-task8-Deployment-Wordpress-Up-n-Working](images/Exercise3-task8-Deployment-Wordpress-Up-n-Working.png)
 
 ![Exercise3-task8-Deployment-Wordpress-First_Blog1](images/Exercise3-task8-Deployment-Wordpress-First_Blog1.png)
 
+Now for any reason if the wordpress pod get deleted/terminate for any reason, should we be worried about data loss ?
 
+No, since we have application(stateful), it uses persistent storage, in our case Azure-Disk will be retain the data & in-spite of container getting terminated or accidentally deleted, the deployment will also ensure it has the minimum replica which would spin up required no of pods again & our wordpress application will be up again & will display the blog we have created. 
 
-Deleting the Wordpress Pod.
+Go ahead & delete the Wordpress pod, you will see as soon as it's terminating, deployment will spin up required container pods. 
 
 ![Exercise3-task8-Deployment-App-Wordpress-Pod-Deletion](images/Exercise3-task8-Deployment-App-Wordpress-Pod-Deletion.png)
 
@@ -375,15 +380,13 @@ Deployment re-creating the Wordpress Pods as it's a Replica Set
 
 ![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Creation-Stage](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Creation-Stage.png)
 
-![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost.png)
-
-
+Now that the pods are up, you can go to Services & use the node port to access the Wordpress application
 
 ![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Uptime-2-mins-only](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-Uptime-2-mins-only.png)
 
-Sample Wordpress Deployment YAML File.
+ We can see the blog which we had created previously. 
 
-![Exercise3-task8-Deployment-Wordpress-YAML-Definition](images/Exercise3-task8-Deployment-Wordpress-YAML-Definition.png)
+![Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost](images/Exercise3-task8-Deployment-Wordpress-New-Pod-Wordpress-App-Contents-Not-Lost.png)
 
 ### Next steps
 
