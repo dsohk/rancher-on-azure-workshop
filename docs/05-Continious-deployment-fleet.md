@@ -40,11 +40,25 @@ In order for us to set label to RKE2 cluster
 In previous exercise, we have configured stateful application. In this exercise, you will configure a simple stateless web  application **Hello-World**which will spin up 2 container Pod with Rancher logo. The application is available at GitHub.
 
 1. In Rancher UI > `Global Apps` > `Continous Delivery` > `Git Repos` click on `Create` 
-2.  Give a name to your Git Rep `Name` 
-3. Paste the Git Repo URL in `Repository URL`
+
+2. Give a name to your Git Rep `Name` 
+
+3. Paste the Git Repo URL in `Repository URL`. 
+
+   Sample Git Repo url is - https://github.com/dipakcpatel78/fleet-demo-src.git
+
+   ```
+   https://github.com/dipakcpatel78/fleet-demo-src.git
+   ```
+
+   
+
 4. In the Branche Name type `main` 
+
 5. Use the dropdown option and select the Cluster Group we created previosuly
+
 6. Provide a Namespace `default`
+
 7. Leave the rest as default
 
 ![Exercise4-Task4-Fleet-Git-Repo-Create](images/Exercise4-Task4-Fleet-Git-Repo-Create.png)

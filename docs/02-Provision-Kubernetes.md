@@ -29,14 +29,32 @@ Let's configure Rancher and provision a Kubernetes cluster (RKE2) of 2 VMs (one 
    
    On Azure shell execute the below command, it will generate the ouput which you can save as text file which provide you with the above details you are looking for.
    
-   ```
-   cd rancher-on-azure-workshop/scripts`
-      `./generate-cloud-provider-json.sh`
+   
+   
    ```
    
+   ```
+   
+   ```
+   cd rancher-on-azure-workshop/scripts
+   ```
+   
+   ```
+   ./generate-cloud-provider-json.sh
+   ```
+   
+   ![exercise2-task1-using-script-to-fetch-azure-details](images/exercise2-task1-using-script-to-fetch-azure-details.png)
+   
+   
+   
+   Use the output to copy & paste the details required. Later we will use the output further in the cluster creation process. 
+   
+   
+   
    ![rancher-create-cluster-azure-credential](./images/rancher-create-cluster-azure-credential.png)
-
+   
 5. You will now be shown a Create Cluster on Azure form. We are going to name the cluster, create 2 machine pools for it (one for master node pool and one for worker nodes pool), and configure Azure cloud provider for this cluster.
+
 5.  Fill in the form with details below for MachinePool - Master
 
 - Cluster name: **rke2**
