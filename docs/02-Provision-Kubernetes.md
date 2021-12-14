@@ -37,6 +37,8 @@ Let's configure Rancher and provision a Kubernetes cluster (RKE2) of 2 VMs (one 
    ./generate-cloud-provider-json.sh
    ```
    
+   Sample Output below
+   
    ![exercise2-task1-using-script-to-fetch-azure-details](images/exercise2-task1-using-script-to-fetch-azure-details.png)
    
    
