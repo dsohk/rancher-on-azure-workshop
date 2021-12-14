@@ -29,12 +29,6 @@ Let's configure Rancher and provision a Kubernetes cluster (RKE2) of 2 VMs (one 
    
    On Azure shell execute the below command, it will generate the ouput which you can save as text file which provide you with the above details you are looking for.
    
-   
-   
-   ```
-   
-   ```
-   
    ```
    cd rancher-on-azure-workshop/scripts
    ```
