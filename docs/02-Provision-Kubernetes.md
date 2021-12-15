@@ -130,7 +130,7 @@ cd rancher-on-azure-workshop/scripts
 ./generate-cloud-provider-json.sh
 ```
 
-You can now copy & paste the code output which was created during Task 1 - Step 4.  Please refer to the Azure Shell for the ouput. 
+You can now copy & paste the code output which was created during Task 1 - Step 4.  **Please refer to the Azure Shell for the output.** 
 
 ```
 {

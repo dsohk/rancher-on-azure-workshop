@@ -24,7 +24,9 @@ Before we proceed, let's verify if we can see all our cluster in Continuous Deli
 
 ![Exercise4-Task4-Fleet-Cluster-Group-Rke2-cluster-azure-demo](images/Exercise4-Task4-Fleet-Cluster-Group-Rke2-cluster-azure-demo.png)
 
-We don't see any cluster matching the label as our cluster (RKE2), we haven't set any cluster labels. Once you apply the cluster with the cluster labels, it would match & provide the result matching.
+We will see 1 cluster to match the label we have used for the Cluster Group. RKE2 Cluster has the same cluster label & hence you should see 1/1 matching as result. 
+
+In-case, if you have missed this step, you can add cluster label later once the cluster is up & running. 
 
 In order for us to set label to RKE2 cluster
 
@@ -34,6 +36,18 @@ In order for us to set label to RKE2 cluster
 4. Under Labes provide key:value pair. In our case **Key:`distro`**  and **Value: `rke2`**
 
 ![Exercise4-Task4-Second-RKE2-Cluster-Creation-Label-Add-Labels](images/Exercise4-Task4-Second-RKE2-Cluster-Creation-Label-Add-Labels.png)
+
+In-case if you receive error, you can also edit the YAML file to add the cluster label.
+
+Need to add one more snippit to show the YAML which show the cluster label. It would be under the Cluster Meta data Section & should say
+
+Metadata
+
+  Labels
+
+​     key: distro
+
+​     value: rke2
 
 ## Task 2 - Configure Git Repo
 
@@ -55,6 +69,16 @@ In previous exercise, we have configured stateful application. In this exercise,
 
 4. In the Branche Name type `main` 
 
+5. Paths - /live/hello-world
+
+    
+
+   ```
+   /live/hello-world
+   ```
+
+   
+
 5. Use the dropdown option and select the Cluster Group we created previosuly
 
 6. Provide a Namespace `default`
@@ -65,7 +89,7 @@ In previous exercise, we have configured stateful application. In this exercise,
 
 You have successfully completed Rancher Continuous Delivery configuration.
 
-Fleet is now configured to watch the applicatino **Hello-World** for code/configuration in GitHub & any changes to the code/configuration will be picked up & be deployed on the target cluster cluster assigned to the cluster group. 
+Fleet is now configured to watch the application **Hello-World** for code/configuration in GitHub & any changes to the code/configuration will be picked up & be deployed on the target cluster cluster assigned to the cluster group. 
 
 Once the Git Repo is created, it will initate the reconciliation
 
@@ -85,7 +109,7 @@ Click on the Nodeport & the application would open a new browser window
 
 ![Exercise4-Task4-Fleet-Deployment-HelloWorld-Success](images/Exercise4-Task4-Fleet-Deployment-HelloWorld-Success.png)
 
-Now we have our Application **Hello-World**Deployed & Running.  We have successfully completed the application rollout for application residing in GitHub to our cluster. 
+Now we have our Application **Hello-World** Deployed & Running.  We have successfully completed the application rollout for application residing in GitHub to our cluster. 
 
 #### **Next following steps are not part of this workshop as it require all to have own personal GitHub Account and hence I am going to demonstrate the next steps for you to see how Fleet support your CI/CD requirements**  
 
