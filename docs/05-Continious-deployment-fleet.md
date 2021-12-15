@@ -41,13 +41,17 @@ In-case if you receive error, you can also edit the YAML file to add the cluster
 
 Need to add one more snippit to show the YAML which show the cluster label. It would be under the Cluster Meta data Section & should say
 
-Metadata
+ApiVersion: provisioning.cattle.io/v1
 
-  Labels
+kind: Cluster
 
-​     key: distro
+metadata:
 
-​     value: rke2
+  labels: 
+
+​    distro=rke2 (Yaml indentation required)
+
+![Exercise4-Edit-Cluster-YAML-Labels](images/Exercise4-Edit-Cluster-YAML-Labels.png)
 
 ## Task 2 - Configure Git Repo
 
