@@ -24,8 +24,8 @@ Let's configure Rancher and provision a Kubernetes cluster (RKE2) of 2 VMs (one 
 
 4. At this point, we need to configure Rancher to be able to automate provisioning on Azure with a proper cloud credential. Fill in the form with your own credential, which can be found in the **Environment Details** > **Service Principal Details** tab in your lab instruction section.
    - Subscription ID: (See lab manual instruction)
-   - Client ID: (See lab manual instruction)
-   - Client Secret: (See lab manual instruction)
+   - Client ID / Application ID : (See lab manual instruction)
+   - Client Secret/ Secret Key : (See lab manual instruction)
    
    On Azure shell execute the below command, it will generate the ouput which you can save as text file which provide you with the above details you are looking for.
    
@@ -130,7 +130,7 @@ cd rancher-on-azure-workshop/scripts
 ./generate-cloud-provider-json.sh
 ```
 
-You can now copy & paste the code output. 
+You can now copy & paste the code output which was created during Task 1 - Step 4.  Please refer to the Azure Shell for the ouput. 
 
 ```
 {
@@ -156,7 +156,25 @@ You can now copy & paste the code output.
 }
 ```
 
+**Cluster Configuration - Basic Tab/Page**
+
+1. Select Kubernetes Version - **RKE2 v.1.21.6-rke2r1**
+2. Container Network Provider - **Calico**
+3. Cloud Provider - **Azure**
+
 ![rancher-create-cluster-cloud-config](./images/rancher-create-cluster-cloud-config.png)
+
+**Cluster Configuration - Labels and Annotations**, This would be required during exercise 05. 
+
+Labels - Add 
+
+1. **Key**: **distro**
+
+2. **Value**: **rke2**
+
+![Exercise4-Task4-Second-RKE2-Cluster-Creation-Label-Add-Labels](images/Exercise4-Task4-Second-RKE2-Cluster-Creation-Label-Add-Labels.png)
+
+**Cluster Configuration - Advanced**, ***Important configuration, missing will result in issues later in the exercise 03*** 
 
 - Under **Advanced** section, add **Additional Controller Manager Args** with the line below. (See Rancher Issue [#34367](https://github.com/rancher/rancher/issues/34367))
 
@@ -165,6 +183,8 @@ You can now copy & paste the code output.
 ```
 
 ![Excercise2-Task1-RKE2Cluster-Creation-MachinePool-Master-Advance-Additional-Controller-Manager-Args](images/Excercise2-Task1-RKE2Cluster-Creation-MachinePool-Master-Advance-Additional-Controller-Manager-Args.png)
+
+
 
 - Click **Create** button to start provisioning.
 
