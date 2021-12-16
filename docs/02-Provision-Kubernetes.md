@@ -103,7 +103,7 @@ Let's configure Rancher and provision a Kubernetes cluster (RKE2) of 2 VMs (one 
       - Network Security Group: **worker**
       - Use Managed Disks: **checked**
       - Add Open Port
-        - **30000-32767/tcp (NodePort Range)
+        - 30000-32767/tcp (NodePort Range)
 
   ![Excercise2-Task1-RKE2Cluster-Creation-MachinePool-worker-Advance-page-Ports-pg3](images/Excercise2-Task1-RKE2Cluster-Creation-MachinePool-worker-Advance-page-Ports-pg3.png)
 
